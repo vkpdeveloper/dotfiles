@@ -27,8 +27,8 @@ window:
   # Blank space added around the window in pixels. This padding is not scaled by
   # DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 0
-    y: 0
+    x: 20
+    y: 10
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: false
@@ -51,15 +51,13 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Fullscreen
-
-  # Background opacity
-  opacity: 0.9
+  startup_mode: Windowed
+  opacity: 0.4
 
 scrolling:
   # maximum number of lines in the scrollback buffer. Specifying '0' will
   # disable scrolling.
-  history: 650
+  history: 5000
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
@@ -306,8 +304,10 @@ bell:
 #   - AppKeypad
 #
 key_bindings:
-  - { key: V, mods: Control, action: Paste }
-  - { key: C, mods: Control, action: Copy }
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: C, mods: Control, chars: "\x03" }
+    # - { key: L, mods: Control, action: ClearLogNotice }
   - { key: Q, mods: Control, action: Quit }
   - { key: N, mods: Control, action: SpawnNewInstance }
   - { key: Return, mods: Control, action: ToggleFullscreen }
