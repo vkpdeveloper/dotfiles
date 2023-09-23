@@ -29,18 +29,11 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 121212 --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -114,6 +107,10 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
+# Moving to prev and next workspaces
+bindsym Ctrl+$mod+Right workspace next
+bindsym Ctrl+$mod+Left workspace prev
+
 # Moving between monitors
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
@@ -127,7 +124,9 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-bindsym $sup+l exec --no-startup-id i3lock -c 121212
+set $i3lockwall i3lock -c 121212
+
+bindsym $sup+l exec --no-startup-id $i3lockwall
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -192,24 +191,75 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+# Volume controls
+set $volumestep 5
+set $statuscmd i3status
+set $volumepath ~/i3-volume
+set $statussig SIGUSR1
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig up $volumestep
+bindsym XF86AudioLowerVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep
+bindsym XF86AudioMute        exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig mute
+
+bindsym Ctrl+Right exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig up $volumestep
+bindsym Ctrl+Left exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep
+bindsym Ctrl+Down        exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig mute
+
+# Resize mode
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3status --config ~/.config/i3/i3status.conf
+	i3bar_command i3bar --transparency
+	colors {
+		background #121212B0
+		statusline #ffffff
+		separator #4a4a4a
+
+		focused_workspace  #7926ff #7926ff #ffffff
+		active_workspace   #7926ff #7926ff #ffffff
+		inactive_workspace #1d1033 #1d1033 #888888
+		urgent_workspace   #c4000d #c4000d #ffffff
+		binding_mode       #2f343a #900000 #ffffff
+	}
 }
+
 # class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused          #121212 #121212 #ffffff #121212   #121212
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
-client.background       #ffffff
-
 focus_follows_mouse no
 popup_during_fullscreen smart
+
+# shutdown / restart / suspend...
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
+
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $i3lockwall, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $i3lockwall && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $i3lockwall && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+BackSpace mode "$mode_system"
+
+
+# Navigator Assignments
+assign [class="firefox" instance="Navigator"] $firefox
+assign [class="Code" instance="code"] $code
+assign [class="Postman" instance="postman"] $postman
+assign [class="Slack" instance="slack"] $slack
 
 exec --no-startup-id xrandr --output eDP --off
 exec --no-startup-id xrandr --output HDMI-A-O --mode 1920x1080 --primary --auto --rate 144.00
@@ -217,3 +267,7 @@ gaps inner 20
 exec feh --bg-scale /home/vaibhav/Pictures/Wallpapers/wallpaper.svg
 exec xsets s off
 exec xset -dpms
+exec "xautolock -detectsleep -time 3 -locker \"i3lock -c 121212\""
+exec --no-startup-id bash /home/vaibhav/.config/i3/restore-session.sh
+# Transparency with picom compositor
+exec_always picom --config /home/$USER/.config/picom/picom.conf
