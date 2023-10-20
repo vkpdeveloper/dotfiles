@@ -49,7 +49,7 @@ bindsym $mod+Return exec /home/vaibhav/.cargo/bin/alacritty
 bindsym $mod+Shift+q kill
 
 # Start Firefox
-bindsym $mod+Shift+f exec /usr/local/bin/firefox
+bindsym $mod+Shift+f exec /usr/local/bin/firefox 
 
 # Take Screenshot
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
@@ -115,6 +115,10 @@ bindsym Ctrl+$mod+Left workspace prev
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
+# Setup for Clipboard Manager
+bindsym $mod+Shift+B exec copyq
+
+
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
@@ -150,8 +154,9 @@ bindsym $mod+2 workspace number $firefox
 bindsym $mod+3 workspace number $code
 bindsym $mod+4 workspace number $postman
 bindsym $mod+5 workspace number $slack
-bindsym $mod+6 workspace number $ws7
-bindsym $mod+7 workspace number $ws8
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
 
 
 bindsym $mod+Shift+1 move container to workspace number $term
@@ -197,9 +202,14 @@ set $statuscmd i3status
 set $volumepath ~/i3-volume
 set $statussig SIGUSR1
 
+# Volume contols using i3-volume and playerctl
 bindsym XF86AudioRaiseVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig up $volumestep
 bindsym XF86AudioLowerVolume exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep
 bindsym XF86AudioMute        exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig mute
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous 
 
 bindsym Ctrl+Right exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig up $volumestep
 bindsym Ctrl+Left exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep
@@ -261,9 +271,9 @@ assign [class="Code" instance="code"] $code
 assign [class="Postman" instance="postman"] $postman
 assign [class="Slack" instance="slack"] $slack
 
-exec --no-startup-id xrandr --output eDP --off
-exec --no-startup-id xrandr --output HDMI-A-O --mode 1920x1080 --primary --auto --rate 144.00
-gaps inner 20
+exec_always --no-startup-id xrandr --output eDP --off
+exec_always --no-startup-id xrandr --output HDMI-A-O --mode 1920x1080 --primary --auto --rate 144.00
+gaps inner 15
 exec feh --bg-scale /home/vaibhav/Pictures/Wallpapers/wallpaper.svg
 exec xsets s off
 exec xset -dpms
@@ -271,3 +281,4 @@ exec "xautolock -detectsleep -time 3 -locker \"i3lock -c 121212\""
 exec --no-startup-id bash /home/vaibhav/.config/i3/restore-session.sh
 # Transparency with picom compositor
 exec_always picom --config /home/$USER/.config/picom/picom.conf
+exec --no-startup-id copyq
