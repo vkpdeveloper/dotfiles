@@ -31,7 +31,12 @@ return require('packer').startup(function(use)
     		opts = {},
 	}
 
-	use{ 'numToStr/Comment.nvim', opts = {} }
+    use{ 'numToStr/Comment.nvim', 
+    opts = {}, 
+    config = function()
+        require('Comment').setup()
+    end 
+}
 
 	use("nvim-treesitter/nvim-treesitter-context");
 
@@ -60,5 +65,13 @@ return require('packer').startup(function(use)
 
 	use("github/copilot.vim")
 
+    use 'navarasu/onedark.nvim'
 
+    use("tpope/vim-fugitive")
+
+    use("Rigellute/shades-of-purple.vim")
+
+    use({
+        'projekt0n/github-nvim-theme',
+    })
 end)
