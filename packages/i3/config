@@ -273,12 +273,12 @@ assign [class="Slack" instance="slack"] $slack
 
 exec_always --no-startup-id xrandr --output eDP --off
 exec_always --no-startup-id xrandr --output HDMI-A-O --mode 1920x1080 --primary --auto --rate 144.00
-gaps inner 15
+# gaps inner 15
 exec feh --bg-scale /home/vaibhav/Pictures/Wallpapers/wallpaper.svg
 exec xsets s off
 exec xset -dpms
 exec "xautolock -detectsleep -time 3 -locker \"i3lock -c 121212\""
-exec --no-startup-id bash /home/vaibhav/.config/i3/restore-session.sh
+# exec --no-startup-id bash /home/vaibhav/.config/i3/restore-session.sh
 # Transparency with picom compositor
 exec_always picom --config /home/$USER/.config/picom/picom.conf
-exec --no-startup-id copyq
+# exec --no-startup-id copyq
