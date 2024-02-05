@@ -1,0 +1,5 @@
+# Some good stuff
+figlet /vaibhav
+
+export XDEBUG_SESSION=1
+export PATH="$PATH:/usr/local/bin:/home/$USER/.cargo/bin"

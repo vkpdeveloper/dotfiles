@@ -1,0 +1,12 @@
+[user]
+	email = vaibhavpathak9984@gmail.com
+	name = vkpdeveloper
+	signingkey = 9A8879E8801950131D2C4A150FCB236ECEF99ADD
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[commit]
+	gpgsign = true

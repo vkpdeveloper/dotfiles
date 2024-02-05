@@ -163,6 +163,7 @@ bindsym $mod+Shift+2 move container to workspace number $firefox
 bindsym $mod+Shift+3 move container to workspace number $code
 bindsym $mod+Shift+4 move container to workspace number $postman
 bindsym $mod+Shift+5 move container to workspace number $slack
+bindsym $mod+Shift+6 move container to workspace number $ws6
 
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -194,6 +195,45 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
+
+# i3-resurrent setup for saving workspaces and restoring it
+set $i3_resurrect i3-resurrect
+
+# Save workspace mode.
+mode "save" {
+  bindsym 1 exec $i3_resurrect save -w 1
+  bindsym 2 exec $i3_resurrect save -w 2
+  bindsym 3 exec $i3_resurrect save -w 3
+  bindsym 4 exec $i3_resurrect save -w 4
+  bindsym 5 exec $i3_resurrect save -w 5
+  bindsym 6 exec $i3_resurrect save -w 6
+
+  # Back to normal: Enter, Escape, or s
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym s mode "default"
+  bindsym $mod+s mode "default"
+}
+
+bindsym $mod+Shift+s mode "save"
+
+# Restore workspace mode.
+mode "restore" {
+  bindsym 1 exec $i3_resurrect restore -w 1
+  bindsym 2 exec $i3_resurrect restore -w 2
+  bindsym 3 exec $i3_resurrect restore -w 3
+  bindsym 4 exec $i3_resurrect restore -w 4
+  bindsym 5 exec $i3_resurrect restore -w 5
+  bindsym 6 exec $i3_resurrect restore -w 6
+
+  # Back to normal: Enter, Escape, or n
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym n mode "default"
+  bindsym $mod+n mode "default"
+}
+
+bindsym $mod+Shift+n mode "restore"
 
 # Volume controls
 set $volumestep 5
@@ -273,7 +313,8 @@ assign [class="Slack" instance="slack"] $slack
 exec_always --no-startup-id xrandr --output eDP --off
 exec_always --no-startup-id xrandr --output HDMI-A-O --mode 1920x1080 --primary --auto --rate 144.00
 # gaps inner 15
-exec feh --bg-scale /home/$USER/.config/i3/assets/wallpaper.svg
+exec feh --bg-scale /home/$USER/.config/i3/assets/wallpaper-space.png
+
 exec xsets s off
 exec xset -dpms
 exec "xautolock -detectsleep -time 3 -locker \"i3lock -c 121212\""
