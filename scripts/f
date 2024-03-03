@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+selected_dir=$(find /home/$USER/Developer -type d | fzf)
+if [ -z "$selected_dir" ]; then
+    exit 1
+fi
+echo -n "Enter the name of the session: "
+read session_name
+
+tmux new-session -c $selected_dir -s $session_name
