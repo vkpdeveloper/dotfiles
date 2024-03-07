@@ -1,10 +1,10 @@
 #!/bin/zsh
 
-selected_dir=$(find /home/$USER/Developer -type d | fzf)
+selected_dir=$(fd --full-path /home/$USER/Developer --type d --exclude .git | fzf --border rounded --ansi)
 if [ -z "$selected_dir" ]; then
     exit 1
 fi
-echo -n "Enter the name of the session: "
+echo -n "Session name: "
 read session_name
 
 tmux new-session -c $selected_dir -s $session_name
