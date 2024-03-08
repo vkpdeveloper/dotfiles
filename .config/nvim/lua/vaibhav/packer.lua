@@ -74,4 +74,6 @@ return require('packer').startup(function(use)
     use({
         'projekt0n/github-nvim-theme',
     })
+    use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
 end)
+
