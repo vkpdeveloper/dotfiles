@@ -10,3 +10,5 @@
 	helper = !/usr/bin/gh auth git-credential
 [commit]
 	gpgsign = true
+[maintenance]
+	repo = /home/vaibhav/Developer/Ant Mascot/apis

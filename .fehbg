@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale '/home/vaibhav/.config/i15/assets/wallpaper-space.png' 
+feh --no-fehbg --bg-scale '/home/vaibhav/.config/i3/assets/wallpaper-space.png' 
