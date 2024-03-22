@@ -305,6 +305,7 @@ bindsym $mod+BackSpace mode "$mode_system"
 
 
 # Navigator Assignments
+assign [class="Alacritty" instance="Alacritty"] $term
 assign [class="firefox" instance="Navigator"] $firefox
 assign [class="Code" instance="code"] $code
 assign [class="Postman" instance="postman"] $postman

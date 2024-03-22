@@ -13,20 +13,29 @@ lsp.ensure_installed({
     'biome',
     'eslint',
     'prismals',
-    'tailwindcss'
+    'tailwindcss',
+    'intelephense'
 })
 
 -- Fix Undefined global 'vim'
 lsp.configure('lua-language-server', {
     settings = {
         Lua = {
+            runtime = {
+                version = 'LuaJIT'
+            },
             diagnostics = {
-                globals = { 'vim' }
-            }
+                globals = { 'vim', 'require' }
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true)
+            },
+            telemetry = {
+                enable = false,
+            },
         }
     }
 })
-
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -45,7 +54,7 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.set_preferences({
-    suggest_lsp_servers = false,
+    suggest_lsp_servers = true,
     sign_icons = {
         error = 'E',
         warn = 'W',
@@ -54,9 +63,8 @@ lsp.set_preferences({
     }
 })
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
   local opts = {buffer = bufnr, remap = false}
-
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)

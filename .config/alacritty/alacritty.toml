@@ -412,7 +412,7 @@ program = "/usr/bin/zsh"
 [window]
 decorations = "none"
 dynamic_padding = false
-opacity = 0.6
+opacity = 0.9
 startup_mode = "Maximized"
 
 [window.dimensions]
@@ -420,5 +420,5 @@ columns = 80
 lines = 20
 
 [window.padding]
-x = 20
-y = 10
+x = 5
+y = 0

@@ -12,3 +12,4 @@
 	gpgsign = true
 [maintenance]
 	repo = /home/vaibhav/Developer/Ant Mascot/apis
+	repo = /home/vaibhav/Developer/Ant Mascot/website
