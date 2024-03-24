@@ -1,12 +1,13 @@
 return {
-    'VonHeikemen/lsp-zero.nvim', branch = 'v3.x',
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v3.x',
     dependencies = {
-        {'neovim/nvim-lspconfig'},
-        {'hrsh7th/cmp-nvim-lsp'},
-        {'hrsh7th/nvim-cmp'},
-        {'L3MON4D3/LuaSnip'},
-        {'williamboman/mason.nvim'},
-        {'williamboman/mason-lspconfig.nvim'},
+        { 'neovim/nvim-lspconfig' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/nvim-cmp' },
+        { 'L3MON4D3/LuaSnip' },
+        { 'williamboman/mason.nvim' },
+        { 'williamboman/mason-lspconfig.nvim' },
     },
     config = function()
         local lsp = require('lsp-zero')
@@ -75,9 +76,9 @@ return {
         })
 
         lsp.on_attach(function(client, bufnr)
-            lsp.default_keymaps({buffer = bufnr})
+            lsp.default_keymaps({ buffer = bufnr })
             lsp.highlight_symbol(client, bufnr)
-            local opts = {buffer = bufnr, remap = false}
+            local opts = { buffer = bufnr, remap = false }
             vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
             vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
             vim.keymap.set("n", "<leader>ws", function() vim.lsp.buf.workspace_symbol() end, opts)
