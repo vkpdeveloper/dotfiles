@@ -1,6 +1,10 @@
 return {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = {
+        "BufReadPre",
+        "BufNewFile"
+    },
     opts = {
         height = 10,
         position = "bottom",

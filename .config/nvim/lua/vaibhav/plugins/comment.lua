@@ -1,5 +1,9 @@
 return {
     'numToStr/Comment.nvim',
     opts = {},
-    lazy = false
+    lazy = true,
+    event = {
+        'BufReadPre',
+        'BufNewFile'
+    }
 }
