@@ -29,6 +29,10 @@ return {
                 'tailwindcss',
                 'intelephense',
                 'lua_ls',
+                'goimports',
+                'golines',
+                'go-debug-adapter',
+                'goimports-reviser',
             },
             handlers = {
                 lsp.default_setup,

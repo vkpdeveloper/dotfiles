@@ -23,7 +23,7 @@ return {
             javascript = { { "prettier" } },
             typescript = { { "prettier" } },
             rust = { { "rustfmt" } },
-            go = { { "goimports" } },
+            go = { { "goimports", "goimports-reviser" } },
             yaml = { { "prettier" } },
             json = { { "prettier" } },
             html = { { "prettier" } },
