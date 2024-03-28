@@ -26,6 +26,14 @@ vim.keymap.set('n', '<leader>n', vim.cmd.tabnext, { desc = 'Next tab' })
 vim.keymap.set('n', '<leader>p', vim.cmd.tabprevious, { desc = 'Previous tab' })
 vim.keymap.set('n', '<leader>x', vim.cmd.tabclose, { desc = 'Close current tab' })
 
+-- Remap for moving to 1st to 6 tabs
+vim.keymap.set('n', '<leader>1', '1gt', { desc = 'Go to tab 1' })
+vim.keymap.set('n', '<leader>2', '2gt', { desc = 'Go to tab 2' })
+vim.keymap.set('n', '<leader>3', '3gt', { desc = 'Go to tab 3' })
+vim.keymap.set('n', '<leader>4', '4gt', { desc = 'Go to tab 4' })
+vim.keymap.set('n', '<leader>5', '5gt', { desc = 'Go to tab 5' })
+vim.keymap.set('n', '<leader>6', '6gt', { desc = 'Go to tab 6' })
+
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
