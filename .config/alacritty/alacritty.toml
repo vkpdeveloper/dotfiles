@@ -109,21 +109,6 @@ key = "C"
 mods = "Control"
 
 [[keyboard.bindings]]
-action = "Quit"
-key = "Q"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "SpawnNewInstance"
-key = "N"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "ToggleFullscreen"
-key = "Return"
-mods = "Control"
-
-[[keyboard.bindings]]
 chars = "\u001BOH"
 key = "Home"
 mode = "AppCursor"

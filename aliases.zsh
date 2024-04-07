@@ -26,3 +26,12 @@ alias runs="sudo pacman -Runs"
 # Just some fun stuff
 alias weather="curl -s wttr.in/bangalore | head -n -3"
 alias cat="bat"
+
+# Productivity aliases
+alias t="tmux"
+alias ta="tmux a"
+alias tls="tmux ls"
+alias tk="tmux kill-session -t"
+alias tks="tmux kill-server"
+alias n="nvim"
+alias nc="nvim ~/.config/nvim/init.lua"
