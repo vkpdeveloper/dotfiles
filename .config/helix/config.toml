@@ -1,0 +1,77 @@
+theme = "github_dark_colorblind"
+
+[editor]
+line-number = "relative"
+mouse = false
+true-color = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+git-exclude = true
+git-ignore = true
+ignore = true
+
+[editor.search]
+smart-case = true
+wrap-around = true
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "version-control"]
+center = []
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+nbsp = "none"
+nnbsp = "none"
+newline = "none"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "␣"
+nnbsp = "␣"
+tab = "»"
+
+[keys.normal]
+"$" = "goto_line_end"
+"0" = "goto_line_start"
+K = "hover"
+
+[keys.normal.space]
+"f" = "file_picker_in_current_directory"
+"F" = "file_picker"
+"b" = "buffer_picker"
+"h" = "jumplist_picker"
+"w" = ":w"
+
+[keys.normal.space.r]
+n = "rename_symbol"
+
+[keys.normal.space.c]
+a = "code_action"
+
+[keys.normal.space.x]
+x = "diagnostics_picker"
+
+[keys.normal.g.c]
+c = "toggle_comments"
+b = "toggle_block_comments"
+
+[keys.normal.G]
+G = "goto_last_line"
+
+[keys.normal.g]
+d = "goto_definition"
+D = "goto_type_definition"
+r = "goto_reference"
+i = "goto_implementation"
