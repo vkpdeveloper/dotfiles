@@ -20,3 +20,7 @@ _darcs
 ^/README.*
 ^/LICENSE.*
 ^/COPYING
+
+^magic\.sql$
+^packages$
+^themes$

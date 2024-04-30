@@ -75,7 +75,7 @@ size = 10.0
 
 [font.bold]
 family = "JetBrains Mono"
-style = "Medium"
+style = "Regular"
 
 [font.glyph_offset]
 x = 0
