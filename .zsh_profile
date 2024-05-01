@@ -2,5 +2,5 @@
 figlet /vaibhav
 
 export XDEBUG_SESSION=1
-export PATH="$PATH:/usr/local/bin:/home/$USER/.cargo/bin"
+export PATH="$PATH:/usr/local/bin:/home/$USER/.cargo/bin/:/home/$USER/go/bin"
 export PATH="$PATH:/home/$USER/scripts"
