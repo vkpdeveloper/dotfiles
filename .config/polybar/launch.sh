@@ -1,1 +1,1 @@
-polybar -c $HOME/.config/polybar/config.init
+polybar -c $HOME/.config/polybar/config.ini
