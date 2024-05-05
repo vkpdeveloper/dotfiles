@@ -130,3 +130,4 @@ export GTK_THEME=Adwaita-dark
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+eval $(opam env)

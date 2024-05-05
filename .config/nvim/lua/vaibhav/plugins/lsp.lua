@@ -34,7 +34,6 @@ return {
 				"tailwindcss",
 				"intelephense",
 				"lua_ls",
-				"sqlfmt",
 			},
 			handlers = {
 				lsp.default_setup,
