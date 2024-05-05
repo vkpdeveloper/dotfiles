@@ -12,7 +12,12 @@ return {
 	},
 	config = function()
 		local lsp = require("lsp-zero")
+		local cmp = require("cmp")
 		lsp.preset("recommended")
+
+		-- nvim-cmp setup
+		cmp.setup()
+
 		require("mason").setup()
 		require("mason-lspconfig").setup({
 			ensure_installed = {
@@ -29,6 +34,7 @@ return {
 				"tailwindcss",
 				"intelephense",
 				"lua_ls",
+				"sqlfmt",
 			},
 			handlers = {
 				lsp.default_setup,
