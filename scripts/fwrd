@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+local_port="$1"
+remote_port="$2"
+server="$3"
+
+if [ -z "$remote_port" ] || [ -z "$local_port" ] || [ -z "$server" ]; then
+    echo "Usage: $0 <local_port> <remote_port> <server>"
+    exit 1
+fi
+
+ssh -N -L "$local_port":localhost:"$remote_port" "$server"
+
