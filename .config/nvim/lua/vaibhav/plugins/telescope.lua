@@ -18,9 +18,6 @@ return {
 		vim.keymap.set("n", "<leader>gf", builtin.git_files, {})
 		vim.keymap.set("n", "<leader>b", builtin.buffers, {})
 		vim.keymap.set("n", "<leader>lg", builtin.live_grep, {})
-		vim.keymap.set("n", "<leader>gs", function()
-			builtin.grep_string({ search = vim.fn.input("Grep > ") })
-		end)
 		vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
 	end,
 }
