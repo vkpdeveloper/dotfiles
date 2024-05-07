@@ -2,8 +2,6 @@ return {
 	"tpope/vim-fugitive",
 	cmd = { "Git", "Gdiffsplit", "Gvdiffsplit" },
 	config = function()
-		vim.keymap.set("n", "<leader>gd", vim.cmd.Gvdiffsplit)
-
 		-- thanks to @ThePrimeagen
 		local Vaibhav_Fugitive = vim.api.nvim_create_augroup("vaibhav_fugitive", {})
 
