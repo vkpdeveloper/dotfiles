@@ -327,8 +327,9 @@ assign [class="Slack" instance="slack"] $slack
 for_window [window_role="alert"] floating enable
 no_focus [window_role="alert"]
 
-exec_always --no-startup-id xrandr --output eDP --off
-exec_always --no-startup-id xrandr --output HDMI-A-O --mode 1920x1080 --primary --auto --rate 144.00
+exec_always --no-startup-id xrandr --output eDP --auto
+# exec_always --no-startup-id xrandr --output HDMI-A-O --mode 1920x1080 --primary --auto --rate 144.00
+
 # gaps inner 15
 exec feh --bg-scale /home/$USER/.config/i3/assets/wallpaper-space.png
 
