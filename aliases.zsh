@@ -37,3 +37,4 @@ alias n="nvim"
 alias nc="nvim ~/.config/nvim/init.lua"
 
 alias hx="helix"
+alias open="xdg-open"
