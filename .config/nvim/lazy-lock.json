@@ -4,6 +4,7 @@
   "cmp-nvim-lsp": { "branch": "main", "commit": "5af77f54de1b16c34b23cba810150689a3a90312" },
   "codeium.vim": { "branch": "main", "commit": "9406f13cf3eaa08318b76746bd105a04506cab27" },
   "conform.nvim": { "branch": "master", "commit": "393210360b9e807862e5329763526509f52b5218" },
+  "git-worktree.nvim": { "branch": "master", "commit": "f247308e68dab9f1133759b05d944569ad054546" },
   "github-dark": { "branch": "main", "commit": "66dcec1bd3d12f8b0bf3c885069888551a650049" },
   "gitsigns.nvim": { "branch": "main", "commit": "805610a9393fa231f2c2b49cb521bfa413fadb3d" },
   "glow.nvim": { "branch": "main", "commit": "238070a686c1da3bccccf1079700eb4b5e19aea4" },
