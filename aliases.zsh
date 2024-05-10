@@ -34,7 +34,6 @@ alias tls="tmux ls"
 alias tk="tmux kill-session -t"
 alias tks="tmux kill-server"
 alias n="nvim"
-alias nc="nvim ~/.config/nvim/init.lua"
 
 alias hx="helix"
 alias open="xdg-open"
