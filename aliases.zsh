@@ -37,3 +37,5 @@ alias n="nvim"
 
 alias hx="helix"
 alias open="xdg-open"
+
+alias itday="ssh itday"
