@@ -397,7 +397,7 @@ program = "/usr/bin/zsh"
 [window]
 decorations = "none"
 dynamic_padding = false
-opacity = 0.9
+opacity = 0.98
 startup_mode = "Maximized"
 
 [window.dimensions]
