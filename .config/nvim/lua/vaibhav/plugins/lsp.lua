@@ -16,7 +16,11 @@ return {
 		lsp.preset("recommended")
 
 		-- nvim-cmp setup
-		cmp.setup()
+		cmp.setup({
+			mapping = cmp.mapping.preset.insert({
+				["<Tab>"] = cmp.mapping.select_next_item(),
+			}),
+		})
 
 		require("mason").setup()
 		require("mason-lspconfig").setup({
