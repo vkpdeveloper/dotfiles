@@ -1,8 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.opt.guicursor = ""
--- Set highlight on search
 
+-- Set highlight on search
 vim.o.hlsearch = false
 
 -- Make line numbers default
@@ -87,3 +87,6 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- netrw settings
+vim.g.netrw_banner = 0
