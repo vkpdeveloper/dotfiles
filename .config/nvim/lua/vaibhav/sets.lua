@@ -22,10 +22,6 @@ vim.o.breakindent = true
 -- Save undo history
 vim.o.undofile = true
 
--- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
 -- Keep signcolumn on by default
 vim.wo.signcolumn = "yes"
 
@@ -49,13 +45,13 @@ vim.opt.relativenumber = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
 
 vim.opt.updatetime = 50
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "120"
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
