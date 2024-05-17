@@ -1,1 +1,1 @@
-# My precious dotfiles
+# My dotfiles
