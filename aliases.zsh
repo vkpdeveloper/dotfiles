@@ -39,3 +39,5 @@ alias hx="helix"
 alias open="xdg-open"
 
 alias itday="ssh itday"
+
+alias gh="history|grep"

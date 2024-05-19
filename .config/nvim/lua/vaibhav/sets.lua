@@ -45,17 +45,15 @@ vim.opt.relativenumber = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = true
+vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
 
 vim.opt.updatetime = 50
+vim.opt.timeoutlen = 300
 vim.opt.colorcolumn = "120"
-vim.opt.hlsearch = false
 vim.opt.incsearch = true
-
-vim.opt.breakindent = true
 
 -- Save undo history
 vim.opt.undofile = true
@@ -64,10 +62,6 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.showmode = false
-
--- Decrease update time
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -90,3 +84,5 @@ vim.opt.scrolloff = 10
 
 -- netrw settings
 vim.g.netrw_banner = 0
+
+vim.opt.background = "dark"
