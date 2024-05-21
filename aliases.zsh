@@ -30,6 +30,7 @@ alias cat="bat"
 # Productivity aliases
 alias t="tmux"
 alias ta="tmux a"
+alias tt="tmux a -t"
 alias tls="tmux ls"
 alias tk="tmux kill-session -t"
 alias tks="tmux kill-server"
