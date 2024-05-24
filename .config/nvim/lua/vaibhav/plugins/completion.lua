@@ -22,6 +22,7 @@ return {
 		cmp.setup({
 			mapping = cmp.mapping.preset.insert({
 				["<Tab>"] = cmp.mapping.select_next_item(),
+				["<S-Tab>"] = cmp.mapping.select_prev_item(),
 			}),
 			completion = {
 				completeopt = "menu,menuone,preview,noselect",
@@ -35,10 +36,9 @@ return {
 			-- sources for autocompletion
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
-				{ name = "luasnip" }, -- snippets
-				{ name = "buffer" }, -- text within current buffer
-				{ name = "path" }, -- file system paths
-				{ name = "supermaven" }, -- supermaven completion
+				{ name = "luasnip" },
+				{ name = "buffer" },
+				{ name = "path" },
 			}),
 
 			-- configure lspkind for vs-code like pictograms in completion menu
