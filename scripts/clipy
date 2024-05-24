@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# Idea
+# 1. Reading the clipboards elements from a file => done
+# 2. Storing item in the clipboard => done, also it handles file creation with default file and any other file too
+# 3. Removing item using an id assigned to each item while rendering
+# 4. Implement a feature where this script can listen to clipboard copy events and automatically store element in the file -> implemented a listen using xclip that listens on the changes every second and writes it to the file
+# 5. Implement a flush command to clear the clipboard
+
+clipy_dir="/home/$USER/.clipy"
+clipy_default_file="$clipy_dir/default"
+
+function save() {
+    echo "$1" >> "$2"
+    echo "clip is written"
+}
+
+function list() {
+    if [[ ! -x "$(command -v bat)" ]]; then
+        cat "$1"
+    else
+        bat "$1"
+    fi
+}
+
+function listen() {
+    old_clipboard_content=""
+    while true; do
+        current_clipboard_content=$(xclip -o)
+        if [[ ! "$current_clipboard_content" == "$old_clipboard_content" ]]; then
+            save "$current_clipboard_content" $clipy_default_file
+            old_clipboard_content="$current_clipboard_content"
+        fi
+        sleep 1
+    done
+}
+
+function flush() {
+    rm "$1" 
+}
+
+if [[ ! -d "$clipy_dir" ]]; then
+    mkdir "$clipy_dir"
+fi
+
+if [[ "$3" != "" ]]; then
+    clipy_default_file="$clipy_dir/$3"
+fi
+
+if [[ -z "$1" ]]; then
+    echo "<save> | <ls> | <listen> | <flush>"
+    exit 1;
+fi
+
+command="$1"
+
+if [[ "$command" == "ls" ]]; then
+    list "$clipy_default_file"
+fi
+
+if [[ "$command" == "save" ]]; then
+    save "$2" $clipy_default_file
+fi
+
+if [[ "$command" == "listen" ]]; then
+    listen
+fi
+
+if [[ "$command" == "flush" ]]; then
+    flush "$clipy_default_file"
+fi
+
