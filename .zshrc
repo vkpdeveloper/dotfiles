@@ -77,7 +77,6 @@ plugins=(
     npm
     sudo
     tmux
-    vscode
     docker-compose
     gh
     golang
