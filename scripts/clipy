@@ -16,11 +16,8 @@ function save() {
 }
 
 function list() {
-    if [[ ! -x "$(command -v bat)" ]]; then
-        cat "$1"
-    else
-        bat "$1"
-    fi
+    cat "$1" | fzf | xclip -selection clipboard
+    echo "copied"
 }
 
 function listen() {

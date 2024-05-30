@@ -25,7 +25,6 @@ alias runs="sudo pacman -Runs"
 
 # Just some fun stuff
 alias weather="curl -s wttr.in/bangalore | head -n -3"
-alias cat="bat"
 
 # Productivity aliases
 alias t="tmux"
