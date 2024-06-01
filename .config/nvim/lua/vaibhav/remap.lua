@@ -48,3 +48,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+-- Running Prisma generate and doing automatic :LspRestart
+vim.keymap.set("n", "<C-A-p>", function()
+	vim.cmd("!npx prisma db push")
+	vim.cmd("LspRestart")
+	print("LSP Restarted Successfully")
+end)
