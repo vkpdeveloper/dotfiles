@@ -58,6 +58,8 @@ return {
 				},
 			},
 		})
+
+		local a = 10
 		-- treesitter setup
 
 		-- treesitter textobjects setup
@@ -69,15 +71,15 @@ return {
 					keymaps = {
 						["af"] = {
 							query = "@function.outer",
-							desc = "Select outer part of a function",
+							desc = "Select around a function",
 						},
 						["if"] = {
 							query = "@function.inner",
-							desc = "Select inner part of a function",
+							desc = "Select inside a function",
 						},
 						["ac"] = {
 							query = "@class.outer",
-							desc = "Select outer part of a class",
+							desc = "Select around a class",
 						},
 						["ic"] = {
 							query = "@class.inner",
