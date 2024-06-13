@@ -1,6 +1,8 @@
 # XAMPP aliases
 alias xstart="sudo /opt/lampp/xampp start"
 alias xstop="sudo /opt/lampp/xampp stop"
+alias startapache="sudo /opt/lampp/xampp startapache"
+alias startmysql="sudo /opt/lampp/xampp startmysql"
 alias xrestart="sudo /opt/lampp/xampp restart"
 
 # Git aliases

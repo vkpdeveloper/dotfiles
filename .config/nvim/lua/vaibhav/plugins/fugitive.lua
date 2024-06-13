@@ -4,6 +4,7 @@ return {
 	config = function()
 		-- thanks to @ThePrimeagen
 		local Vaibhav_Fugitive = vim.api.nvim_create_augroup("vaibhav_fugitive", {})
+		vim.keymap.set("n", "<C-G>", "<Cmd>Git<Cr>")
 
 		local autocmd = vim.api.nvim_create_autocmd
 		autocmd("BufWinEnter", {
