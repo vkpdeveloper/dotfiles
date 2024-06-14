@@ -1,4 +1,5 @@
-augroup netrw_mappings
-  autocmd!
-  autocmd filetype netrw nnoremap <C-L> <Nop>
-augroup END
+let mapleader = " "
+set incsearch
+set relativenumber
+set clipboard=unnamedplus
+set scrolloff=10
