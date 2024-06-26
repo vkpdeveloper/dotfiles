@@ -43,3 +43,9 @@ alias open="xdg-open"
 alias itday="ssh itday"
 
 alias gh="history|grep"
+
+alias vi="nvim"
+alias vim="nvim"
+alias v="nvim"
+
+alias cls="clipy ls"

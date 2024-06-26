@@ -1,6 +1,7 @@
 return {
 	"tpope/vim-fugitive",
 	cmd = { "Git", "Gdiffsplit", "Gvdiffsplit" },
+	lazy = false,
 	config = function()
 		-- thanks to @ThePrimeagen
 		local Vaibhav_Fugitive = vim.api.nvim_create_augroup("vaibhav_fugitive", {})
@@ -23,8 +24,10 @@ return {
 
 				-- rebase always
 				vim.keymap.set("n", "<leader>P", function()
-					vim.cmd.Git({ "pull", "--rebase" })
+					vim.cmd.Git({ "pull --rebase" })
 				end, opts)
+
+				vim.keymap.set("n", "q", vim.cmd.quit)
 			end,
 		})
 	end,

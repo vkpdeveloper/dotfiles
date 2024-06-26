@@ -11,10 +11,11 @@ return {
 			-- Disable "format_on_save lsp_fallback" for languages that don't
 			-- have a well standardized coding style. You can add additional
 			-- languages here or re-enable it for the disabled ones.
-			local disable_filetypes = {}
+			local disable_filetypes = { "oil" }
 			return {
 				timeout_ms = 2500,
 				lsp_fallback = true,
+				disable_filetypes = disable_filetypes,
 			}
 		end,
 		formatters_by_ft = {
@@ -37,6 +38,7 @@ return {
 	config = function(_, opts)
 		local conform = require("conform")
 		conform.setup(opts)
+
 		conform.formatters.prettier = {
 			prepend_args = { "--prose-wrap", "always" },
 		}
