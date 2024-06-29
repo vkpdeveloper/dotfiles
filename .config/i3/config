@@ -261,7 +261,7 @@ smart_borders on
 hide_edge_borders smart_no_gaps
 gaps inner 8
 
-exec_always feh --bg-scale /home/$USER/.config/i3/assets/wallpaper-space.png
+exec_always feh --bg-fill /home/$USER/.config/i3/assets/wallpaper-space.png
 
 exec xsets s off
 exec xset -dpms
