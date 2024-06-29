@@ -21,57 +21,42 @@ duration = 0
 [colors]
 draw_bold_text_with_bright_colors = false
 
-[[colors.indexed_colors]]
-color = "0xff8f40"
-index = 16
-
-[[colors.indexed_colors]]
-color = "0xe6b673"
-index = 17
-
-[[colors.indexed_colors]]
-color = "0x131721"
-index = 18
-
-[[colors.indexed_colors]]
-color = "0x272d38"
-index = 19
-
-[[colors.indexed_colors]]
-color = "0xbfbdb6"
-index = 20
-
-[[colors.indexed_colors]]
-color = "0xe6e1cf"
-index = 21
-
-[colors.bright]
-black   = '0x6e7681'
-red     = '0xfdac54'
-green   = '0x79c0ff'
-yellow  = '0xe3b341'
-blue    = '0x79c0ff'
-magenta = '0xbc8cff'
-cyan    = '0x39c5cf'
-white   = '0xb1bac4'
-
-[colors.cursor]
-cursor = "0xc9d1d9"
-text = "0x0d1117"
-
-[colors.normal]
-black   = '0x484f58'
-red     = '0xec8e2c'
-green   = '0x58a6ff'
-yellow  = '0xd29922'
-blue    = '0x58a6ff'
-magenta = '0xbc8cff'
-cyan    = '0x39c5cf'
-white   = '0xb1bac4'
-
+# Kanagawa Alacritty Colors
 [colors.primary]
-background = "0x0d1117"
-foreground = "0xe6e1cf"
+background = '#181616'
+foreground = '#c5c9c5'
+
+  [colors.normal]
+black = '#0d0c0c'
+red = '#c4746e'
+green = '#8a9a7b'
+yellow = '#c4b28a'
+blue = '#8ba4b0'
+magenta = '#a292a3'
+cyan = '#8ea4a2'
+white = '#C8C093'
+
+  [colors.bright]
+black = '#a6a69c'
+red = '#E46876'
+green = '#87a987'
+yellow = '#E6C384'
+blue = '#7FB4CA'
+magenta = '#938AA9'
+cyan = '#7AA89F'
+white = '#c5c9c5'
+
+  [colors.selection]
+background = '#2D4F67'
+foreground = '#C8C093'
+
+[[colors.indexed_colors]]
+index = 16
+color = '#b6927b'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#b98d7b'
 
 [cursor]
 style = "Block"

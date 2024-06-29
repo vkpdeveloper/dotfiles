@@ -61,7 +61,7 @@ draw_bold_text_with_bright_colors = false
 # foreground = "0xe6e1cf"
 
 # Kanagawa Alacritty Colors
-  [colors.primary]
+[colors.primary]
 background = '#181616'
 foreground = '#c5c9c5'
 
