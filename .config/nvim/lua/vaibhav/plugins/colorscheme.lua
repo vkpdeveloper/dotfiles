@@ -16,6 +16,7 @@ return {
 				italic = false,
 			},
 			statementStyle = {
+				bold = false,
 				italic = false,
 			},
 			typeStyle = {},
@@ -34,7 +35,12 @@ return {
 			},
 			overrides = function(colors)
 				local theme = colors.theme
-				return {}
+				return {
+					["@variable.builtin"] = {
+						bg = "none",
+						italic = false,
+					},
+				}
 			end,
 			theme = "dragon",
 		})
