@@ -1,0 +1,6 @@
+alias gaa="git add ."
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
+alias gpl="git pull"
+alias gf="git fetch"
