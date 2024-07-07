@@ -110,6 +110,8 @@ render_timer = false
 [font]
 size = 10.0
 
+## --- JetBrainsMono Font Config ---
+
 [font.bold]
 family = "JetBrainsMono Nerd Font"
 style = "Heavy"
@@ -125,6 +127,8 @@ style = "Medium Italic"
 [font.normal]
 family = "JetBrainsMono Nerd Font"
 style = "Medium"
+
+## --- JetBrainsMono Font Config ---
 
 [font.glyph_offset]
 x = 0

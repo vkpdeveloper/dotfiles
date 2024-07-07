@@ -23,6 +23,7 @@ return {
 			"jay-babu/mason-nvim-dap.nvim",
 			dependencies = "mason.nvim",
 			cmd = { "DapInstall", "DapUninstall" },
+			event = "VeryLazy",
 			opts = {
 				-- Makes a best effort to setup the various debuggers with
 				-- reasonable debug configurations
@@ -35,7 +36,7 @@ return {
 				-- You'll need to check that you have the required things installed
 				-- online, please don't ask me how to install them :)
 				ensure_installed = {
-					-- Update this to ensure that you have the debuggers for the langs you want
+					"codelldb",
 				},
 			},
 		},
@@ -45,25 +46,8 @@ return {
 		},
 		{
 			"rcarriga/nvim-dap-ui",
-			config = function()
-				local dap, dapui = require("dap"), require("dapui")
-
-				dap.listeners.after.event_initialized["dapui_config"] = function()
-					dapui.open({})
-				end
-				dap.listeners.before.event_terminated["dapui_config"] = function()
-					dapui.close({})
-				end
-				dap.listeners.before.event_exited["dapui_config"] = function()
-					dapui.close({})
-				end
-
-				vim.keymap.set("n", "<leader>ui", require("dapui").toggle)
-				require("dapui").setup()
-			end,
 		},
 		"nvim-neotest/nvim-nio",
-		-- Install the vscode-js-debug adapter
 		{
 			"microsoft/vscode-js-debug",
 			-- After install, build it and rename the dist directory to out
@@ -97,29 +81,64 @@ return {
 			end,
 		},
 	},
-
 	config = function()
 		local dap = require("dap")
+		local dapui = require("dapui")
 		local dapGo = require("dap-go")
+		dapui.setup()
 		dapGo.setup()
+
+		local sign = vim.fn.sign_define
+
+		local dap_round_groups = { "DapBreakpoint", "DapBreakpointCondition", "DapBreakpointRejected", "DapLogPoint" }
+		for _, group in pairs(dap_round_groups) do
+			sign(group, { text = "●", texthl = group })
+		end
+
+		-- Adding listeners for dap to automatically open the daptui
+		dap.listeners.before.attach.dapui_config = function()
+			dapui.open()
+		end
+		dap.listeners.before.launch.dapui_config = function()
+			dapui.open()
+		end
+		dap.listeners.before.event_terminated.dapui_config = function()
+			dapui.close()
+		end
+		dap.listeners.before.event_exited.dapui_config = function()
+			dapui.close()
+		end
+
+		dap.adapters.codelldb = {
+			type = "server",
+			port = "${port}",
+			executable = {
+				command = "codelldb",
+				args = { "--port", "${port}" },
+			},
+		}
+
+		vim.keymap.set("n", "<leader>ui", function()
+			dapui.toggle()
+		end)
 	end,
 	keys = {
 		{
-			"<leader>dO",
+			"<leader>O",
 			function()
 				require("dap").step_out()
 			end,
 			desc = "Step Out",
 		},
 		{
-			"<leader>do",
+			"<leader>o",
 			function()
 				require("dap").step_over()
 			end,
 			desc = "Step Over",
 		},
 		{
-			"<leader>da",
+			"<leader>d",
 			function()
 				if vim.fn.filereadable(".vscode/launch.json") then
 					local dap_vscode = require("dap.ext.vscode")
@@ -131,7 +150,7 @@ return {
 				end
 				require("dap").continue()
 			end,
-			desc = "Run with Args",
+			desc = "Start or continue our debugger",
 		},
 		{
 			"<leader>B",
