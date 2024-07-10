@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-selected_dir=$(fd --full-path /home/$USER/Developer --type d --exclude .git | fzf --border rounded --ansi)
+selected_dir=$(fd --full-path $TMUX_F_DIR --type d --exclude .git | fzf --border rounded --ansi)
 if [ -z "$selected_dir" ]; then
     exit 1
 fi
