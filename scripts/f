@@ -4,7 +4,7 @@ selected_dir=$(fd --full-path $TMUX_F_DIR --type d --exclude .git | fzf --border
 if [ -z "$selected_dir" ]; then
     exit 1
 fi
-echo -n "Session name: "
-read session_name
+
+session_name=$(basename $selected_dir)
 
 tmux new-session -c $selected_dir -s $session_name
