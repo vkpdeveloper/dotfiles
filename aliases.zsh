@@ -49,3 +49,5 @@ alias vim="nvim"
 alias v="nvim"
 
 alias cls="clipy ls"
+
+alias nvf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"

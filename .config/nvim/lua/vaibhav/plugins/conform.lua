@@ -33,6 +33,7 @@ return {
 			markdown = { { "prettier" } },
 			php = { { "phpcbf" } },
 			scala = { { "scalafmt" } },
+			sql = { { "sqlfmt" } },
 		},
 	},
 	config = function(_, opts)
