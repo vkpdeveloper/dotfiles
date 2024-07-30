@@ -30,6 +30,7 @@ alias weather="curl -s wttr.in/bangalore | head -n -3"
 
 # Productivity aliases
 alias t="tmux"
+alias tn="tmux new-session -s $(basename $(eval pwd))"
 alias ta="tmux a"
 alias tt="tmux a -t"
 alias tls="tmux ls"
