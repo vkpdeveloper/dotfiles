@@ -1,0 +1,84 @@
+" search for actions: :actionlist <patter>
+
+set number relativenumber                        " line numbers
+
+" set <leader> to <space>
+let mapleader = " "
+
+set hlsearch                      " highlight search occurrences
+set ignorecase                    " ignore case in search patterns
+set smartcase                     " no ignore case when pattern is uppercase
+set incsearch                     " show search results while typing
+set wrapscan                      " searches wrap around the end of the file
+
+set gdefault                      " substitute all occurrences in line per default
+set history=10000                 " keep x lines of command line history
+set scrolloff=5 sidescrolloff=10  " keep some lines before and after the cursor visible
+set clipboard=unnamedplus,unnamed,ideaput " integrate with system clipboard
+
+" https://github.com/JetBrains/ideavim/wiki/%22set%22-commands
+set multiple-cursors
+set commentary
+set surround                      " emulate vim-surround plugin
+set ideajoin
+set ideastatusicon=disabled
+set nohls
+set showmode
+
+" edit ideavim config
+nnoremap <leader>vv :e ~/.ideavimrc<CR>
+nnoremap <leader>vr :source ~/.ideavimrc<CR>
+
+" don't lose selection when indenting
+vnoremap < <gv
+vnoremap > >gv
+vnoremap = =gv
+
+" Custom bindings
+
+nnoremap <leader>, mZA,<Esc>`Z
+nnoremap <leader>; mZA;<Esc>`Z
+
+""" IdeaVim plugins
+
+packadd matchit		" Extended matching. Supports % (matching motion) and g% (reverse motion)
+
+Plug 'easymotion/vim-easymotion'	" Requires IdeaVim-EasyMotion. Lots of mappings
+Plug 'kana/vim-textobj-entire'		" entire buffer text object: ae
+Plug 'machakann/vim-highlightedyank'
+Plug 'terryma/vim-multiple-cursors'	" See below for remapped keys. <A-n> doesn't work on Mac
+Plug 'tommcdo/vim-exchange'		    " cx{motion} to select, again to exchange
+Plug 'tpope/vim-commentary'		    " [count]gc{motion}, o_gc, v_gc, gcc
+Plug 'vim-scripts/argtextobj.vim'	    " argument text objects: aa, ia
+
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
+
+nmap <leader>ff :action GotoFile<CR>
+nmap <leader>fs :action FindInPath<CR>
+nmap <leader>w :action SaveAll<CR>
+nmap <leader>a :action FindInPath<CR>
+nmap <leader>p :action ReformatCode<CR>
+nmap <leader>ca :action ShowIntentionActions<CR>
+nmap <leader>q :action CloseContent<CR>
+nmap <leader>rn :action RenameElement<CR>
+nmap gr :action ShowUsages<CR>
+nmap gd :action GotoImplementation<CR>
+nmap gs :action GotoSuperMethod<CR>
+
+nmap <leader>l :action NextTab<CR>
+nmap <leader>h :action PreviousTab<CR>
+
+nmap <C-p> :action ParameterInfo<CR>
+map gh <Action>(ShowErrorDescription)
+
+nmap <leader>d :action Debug<CR>
+nmap ]d :action GotoNextError<CR>
+nmap [d :action GotoPreviousError<CR>
+
+nmap <, :action MoveElementLeft<CR>
+nmap >, :action MoveElementRight<CR>
+
+// split navigation
+nmap <C-l> :action NextSplitter<CR>
+nmap <C-h> :action PrevSplitter<CR>
