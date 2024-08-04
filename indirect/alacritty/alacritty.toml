@@ -26,7 +26,7 @@ draw_bold_text_with_bright_colors = false
 background = '#181616'
 foreground = '#c5c9c5'
 
-  [colors.normal]
+[colors.normal]
 black = '#0d0c0c'
 red = '#c4746e'
 green = '#8a9a7b'
@@ -68,8 +68,27 @@ persistent_logging = false
 print_events = false
 render_timer = false
 
+# [font]
+# size = 18.0
+#
+# [font.bold]
+# family = "Agave"
+# style = "Bold"
+#
+# [font.bold_italic]
+# family = "Agave"
+# style = "Bold"
+#
+# [font.italic]
+# family = "Agave"
+# style = "Regular"
+#
+# [font.normal]
+# family = "Agave"
+# style = "Regular"
+
 [font]
-size = 14.0
+size = 16.0
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"
