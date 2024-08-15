@@ -8,94 +8,81 @@ duration = 0
 [colors]
 draw_bold_text_with_bright_colors = false
 
-# [[colors.indexed_colors]]
-# color = "0xff8f40"
-# index = 16
-#
-# [[colors.indexed_colors]]
-# color = "0xe6b673"
-# index = 17
-#
-# [[colors.indexed_colors]]
-# color = "0x131721"
-# index = 18
-#
-# [[colors.indexed_colors]]
-# color = "0x272d38"
-# index = 19
-#
-# [[colors.indexed_colors]]
-# color = "0xbfbdb6"
-# index = 20
-#
-# [[colors.indexed_colors]]
-# color = "0xe6e1cf"
-# index = 21
-#
-# [colors.bright]
-# black   = '0x6e7681'
-# red     = '0xfdac54'
-# green   = '0x79c0ff'
-# yellow  = '0xe3b341'
-# blue    = '0x79c0ff'
-# magenta = '0xbc8cff'
-# cyan    = '0x39c5cf'
-# white   = '0xb1bac4'
-#
-# [colors.cursor]
-# cursor = "0xc9d1d9"
-# text = "0x0d1117"
-#
-# [colors.normal]
-# black   = '0x484f58'
-# red     = '0xec8e2c'
-# green   = '0x58a6ff'
-# yellow  = '0xd29922'
-# blue    = '0x58a6ff'
-# magenta = '0xbc8cff'
-# cyan    = '0x39c5cf'
-# white   = '0xb1bac4'
-#
-# [colors.primary]
-# background = "0x0d1117"
-# foreground = "0xe6e1cf"
-
-# Kanagawa Alacritty Colors
 [colors.primary]
-background = '#181616'
-foreground = '#c5c9c5'
+background = "#000000"
+foreground = "#cdd6f4"
+dim_foreground = "#000000"
+bright_foreground = "#000000"
 
-  [colors.normal]
-black = '#0d0c0c'
-red = '#c4746e'
-green = '#8a9a7b'
-yellow = '#c4b28a'
-blue = '#8ba4b0'
-magenta = '#a292a3'
-cyan = '#8ea4a2'
-white = '#C8C093'
+[colors.cursor]
+text = "#1e1e2e"
+cursor = "#f5e0dc"
 
-  [colors.bright]
-black = '#a6a69c'
-red = '#E46876'
-green = '#87a987'
-yellow = '#E6C384'
-blue = '#7FB4CA'
-magenta = '#938AA9'
-cyan = '#7AA89F'
-white = '#c5c9c5'
+[colors.vi_mode_cursor]
+text = "#1e1e2e"
+cursor = "#b4befe"
 
-  [colors.selection]
-background = '#2D4F67'
-foreground = '#C8C093'
+[colors.search.matches]
+foreground = "#1e1e2e"
+background = "#a6adc8"
+
+[colors.search.focused_match]
+foreground = "#1e1e2e"
+background = "#a6e3a1"
+
+[colors.footer_bar]
+foreground = "#1e1e2e"
+background = "#a6adc8"
+
+[colors.hints.start]
+foreground = "#1e1e2e"
+background = "#f9e2af"
+
+[colors.hints.end]
+foreground = "#1e1e2e"
+background = "#a6adc8"
+
+[colors.selection]
+text = "#1e1e2e"
+background = "#f5e0dc"
+
+[colors.normal]
+black = "#45475a"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#bac2de"
+
+[colors.bright]
+black = "#585b70"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#a6adc8"
+
+[colors.dim]
+black = "#45475a"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#bac2de"
 
 [[colors.indexed_colors]]
 index = 16
-color = '#b6927b'
+color = "#fab387"
 
 [[colors.indexed_colors]]
 index = 17
-color = '#b98d7b'
+color = "#f5e0dc"
 
 [cursor]
 style = "Block"
