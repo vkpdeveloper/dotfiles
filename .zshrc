@@ -44,7 +44,7 @@ zstyle ':omz:update' mode auto  # just remind me to update when it's time
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
+# You can also set it to another string to have that RGB instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
@@ -117,7 +117,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 source ~/.zsh_profile
 source ~/aliases.zsh
 source ~/.gitalias.zsh
