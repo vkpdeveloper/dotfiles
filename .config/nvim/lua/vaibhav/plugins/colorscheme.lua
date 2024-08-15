@@ -66,7 +66,7 @@ return {
 			flavour = "mocha",
 			no_italic = true,
 			term_colors = false,
-			transparent_background = false,
+			transparent_background = true,
 			styles = {
 				comments = {},
 				conditionals = {},
