@@ -21,6 +21,20 @@ return {
 		telescope.load_extension("dap")
 
 		keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+		keymap.set("n", "<leader>fe", function()
+			builtin.find_files({
+				prompt_title = "Search Environment files",
+				find_command = {
+					"rg",
+					"--files",
+					"--hidden",
+					"-g",
+					".env",
+					"-g",
+					".env.*",
+				},
+			})
+		end, { desc = "Find environment files" })
 		keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Find git files" })
 		keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
 		keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Live grep" })
