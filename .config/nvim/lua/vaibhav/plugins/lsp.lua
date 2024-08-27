@@ -91,8 +91,6 @@ return {
 			"docker_compose_language_service",
 			"prismals",
 			"clangd",
-			"eslint_d",
-			"prettierd",
 		})
 
 		lsp.on_attach(function(client, bufnr)
