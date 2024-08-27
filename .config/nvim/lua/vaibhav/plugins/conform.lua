@@ -6,31 +6,34 @@ return {
 		"LspAttach",
 	},
 	opts = {
-		notify_on_error = false,
 		format_on_save = function(bufnr)
 			-- Disable "format_on_save lsp_fallback" for languages that don't
 			-- have a well standardized coding style. You can add additional
 			-- languages here or re-enable it for the disabled ones.
 			local disable_filetypes = { "oil" }
 			return {
-				timeout_ms = 2500,
+				lsp_format = "fallback",
+				timeout_ms = 500,
 				lsp_fallback = true,
 				disable_filetypes = disable_filetypes,
 			}
 		end,
+		notify_no_formatters = true,
+		notify_on_error = false,
+		log_level = vim.log.levels.ERROR,
 		formatters_by_ft = {
 			lua = { "stylua" },
 			-- Conform can also run multiple formatters sequentially
 			python = { "black" },
-			javascript = { { "prettier" } },
-			typescript = { { "prettier" } },
+			javascript = { { "prettierd" } },
+			typescript = { { "prettierd" } },
 			rust = { { "rustfmt" } },
 			go = { { "goimports", "goimports-reviser" } },
-			yaml = { { "prettier" } },
-			json = { { "prettier" } },
-			html = { { "prettier" } },
-			css = { { "prettier" } },
-			markdown = { { "prettier" } },
+			yaml = { { "prettierd" } },
+			json = { { "prettierd" } },
+			html = { { "prettierd" } },
+			css = { { "prettierd" } },
+			markdown = { { "prettierd" } },
 			php = { { "phpcbf" } },
 			scala = { { "scalafmt" } },
 			sql = { { "sqlfmt" } },
