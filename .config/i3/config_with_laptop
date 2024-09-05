@@ -245,8 +245,10 @@ bindsym $sup+$mod+d mode "$mode_display"
 # Navigator Assignments
 assign [class="Alacritty" instance="Alacritty"] $term
 assign [class="firefox" instance="Navigator"] $firefox
+assign [class="Brave-browser" instance="brave-browser"] $firefox
 assign [class="Code" instance="code"] $code
 assign [class="Postman" instance="postman"] $postman
+assign [class="MongoDB Compass" instance="mongodb compass"] $postman
 assign [class="Slack" instance="slack"] $slack
 
 for_window [window_role="alert"] floating enable
@@ -261,7 +263,7 @@ smart_borders on
 hide_edge_borders smart_no_gaps
 gaps inner 8
 
-exec_always feh --bg-fill /home/$USER/.config/i3/assets/wallpaper-space.png
+exec --no-startup-id feh --randomize --bg-fill /home/$USER/.config/i3/assets/wallpapers/
 
 exec xsets s off
 exec xset -dpms
