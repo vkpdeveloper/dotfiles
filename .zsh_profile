@@ -6,3 +6,5 @@ export PATH="$PATH:/opt/flutter/bin"
 export PATH="$PATH:/home/$USER/Android/Sdk/platform-tools"
 export CHROME_EXECUTABLE="/usr/bin/google-chrome-stable"
 export TERMINAL="/usr/bin/alacritty"
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

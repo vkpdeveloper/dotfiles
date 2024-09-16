@@ -36,7 +36,7 @@ alias tt="tmux a -t"
 alias tls="tmux ls"
 alias tk="tmux kill-session -t"
 alias tks="tmux kill-server"
-alias n="nvim"
+alias n="nvim ."
 
 alias hx="helix"
 alias open="xdg-open"
@@ -54,3 +54,5 @@ alias cls="clipy ls"
 alias nvf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 
 alias nodekillport="lsof -ti :3000"
+
+alias la="eza --icons --long"

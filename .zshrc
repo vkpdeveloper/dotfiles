@@ -82,6 +82,7 @@ plugins=(
     golang
     colorize
     colored-man-pages 
+    zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
