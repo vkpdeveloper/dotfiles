@@ -2,14 +2,15 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.opt.guicursor = ""
 
+vim.scriptencoding = "utf-8"
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
+
 -- Set highlight on search
 vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
-
--- Enable mouse mode
-vim.o.mouse = "a"
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -86,3 +87,9 @@ vim.opt.scrolloff = 10
 vim.g.netrw_banner = 0
 
 vim.opt.background = "dark"
+
+vim.opt.splitkeep = "cursor"
+vim.opt.mouse = ""
+
+vim.opt.showcmd = true
+vim.opt.title = true
