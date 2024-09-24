@@ -18,7 +18,6 @@ return {
 					"dockerls",
 					"prismals",
 					"tailwindcss",
-					"intelephense",
 					"lua-language-server",
 					"eslint_d",
 					"sqlfmt",
@@ -45,7 +44,6 @@ return {
 				"biome",
 				"prismals",
 				"tailwindcss",
-				"intelephense",
 				"lua_ls",
 			},
 			handlers = {
@@ -87,7 +85,6 @@ return {
 			"tailwindcss",
 			"gopls",
 			"dockerls",
-			"intelephense",
 			"docker_compose_language_service",
 			"prismals",
 			"clangd",
