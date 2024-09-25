@@ -92,7 +92,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_IN.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -139,4 +139,4 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 
 eval $(opam env --switch=default)
 
-source .screen-env
+source ~/.screen-env
