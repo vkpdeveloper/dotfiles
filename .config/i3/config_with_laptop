@@ -266,7 +266,6 @@ exec --no-startup-id feh --randomize --bg-fill /home/$USER/.config/i3/assets/wal
 
 exec xsets s off
 exec xset -dpms
-exec "xautolock -detectsleep -time 3 -locker \"i3lock -c 121212\""
-exec_always killall polybar
+exec "xautolock -detectsleep -time 25 -locker \"i3lock -c 121212\""
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always picom --config /home/$USER/.config/picom/picom.conf
