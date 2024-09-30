@@ -10,18 +10,20 @@ return {
 				automatic_installation = true,
 				ensure_installed = {
 					"js-debug-adapter",
-					"lua-language-server",
-					"rust-analyzer",
+					"lua_ls",
+					"rust_analyzer",
 					"clangd",
+					"codelldb",
 					"gopls",
 					"docker_compose_language_service",
 					"dockerls",
 					"prismals",
 					"tailwindcss",
-					"lua-language-server",
 					"eslint_d",
-					"sqlfmt",
 					"prettierd",
+					"delve",
+					"black",
+					"isort",
 				},
 			},
 		},
@@ -34,7 +36,7 @@ return {
 		require("mason").setup()
 		require("mason-lspconfig").setup({
 			ensure_installed = {
-				"tsserver",
+				"ts_ls",
 				"rust_analyzer",
 				"clangd",
 				"golangci_lint_ls",
@@ -79,7 +81,7 @@ return {
 
 		require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 		lsp.setup_servers({
-			"tsserver",
+			"ts_ls",
 			"rust_analyzer",
 			"lua_ls",
 			"tailwindcss",
