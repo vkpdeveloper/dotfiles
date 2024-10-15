@@ -254,8 +254,6 @@ assign [class="Slack" instance="slack"] $slack
 for_window [window_role="alert"] floating enable
 no_focus [window_role="alert"]
 
-exec_always --no-startup-id xrandr --output $LAPTOP_SCREEN_NAME --auto --mode 1920x1080
-
 # Gaps and borders config
 smart_gaps on
 smart_borders on
