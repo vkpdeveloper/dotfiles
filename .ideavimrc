@@ -55,6 +55,7 @@ nnoremap <c-o> :action Back<cr>
 nnoremap <c-i> :action Forward<cr>
 
 nmap <leader>ff :action GotoFile<CR>
+nmap <leader>fb :action RecentFiles<CR>
 nmap <leader>fs :action FindInPath<CR>
 nmap <leader>w :action SaveAll<CR>
 nmap <leader>a :action FindInPath<CR>
@@ -82,3 +83,6 @@ nmap >, :action MoveElementRight<CR>
 // split navigation
 nmap <C-l> :action NextSplitter<CR>
 nmap <C-h> :action PrevSplitter<CR>
+
+// Split panes
+nmap <leader>sv :action SplitVertically<CR>

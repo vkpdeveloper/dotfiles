@@ -62,7 +62,7 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+space exec --no-startup-id rofi -show drun
 bindsym $mod+Shift+d exec --no-startup-id rofi -terminal /usr/bin/alacritty -show ssh
 
 # alternatively, you can use the cursor keys:
@@ -104,7 +104,7 @@ bindsym $mod+Shift+B exec copyq
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+Shift+ focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
