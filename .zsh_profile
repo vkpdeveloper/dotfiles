@@ -7,4 +7,8 @@ export PATH="$PATH:/home/$USER/Android/Sdk/platform-tools"
 export CHROME_EXECUTABLE="/usr/bin/google-chrome-stable"
 export TERMINAL="/usr/bin/alacritty"
 
+# # Conda setup
+# export PATH="$PATH:/opt/anaconda/bin"
+# export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
+
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

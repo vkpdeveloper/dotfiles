@@ -62,8 +62,7 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+space exec --no-startup-id rofi -show drun
-bindsym $mod+Shift+d exec --no-startup-id rofi -terminal /usr/bin/alacritty -show ssh
+bindsym $mod+space exec --no-startup-id .config/rofi.vaibhav/files/launchers/type-1/launcher.sh
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+l focus right

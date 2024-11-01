@@ -58,3 +58,7 @@ alias nodekillport="lsof -ti :3000"
 alias la="eza --icons --long"
 
 alias erp="cd /opt/lampp/htdocs/erp/application"
+
+alias offlaptop="xrandr --output eDP-1-1 --off"
+alias onlaptop="xrandr --output eDP-1-1 --mode 1920x1080"
+alias onmonitor="xrandr --output HDMI-0 --mode 1920x1080"
