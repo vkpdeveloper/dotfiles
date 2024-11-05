@@ -39,6 +39,7 @@ return {
 				{ name = "luasnip" },
 				{ name = "buffer" },
 				{ name = "path" },
+				{ name = "supermaven" },
 			}),
 
 			-- configure lspkind for vs-code like pictograms in completion menu
