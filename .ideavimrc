@@ -66,6 +66,7 @@ nmap <leader>rn :action RenameElement<CR>
 nmap gr :action ShowUsages<CR>
 nmap gd :action GotoImplementation<CR>
 nmap gs :action GotoSuperMethod<CR>
+nmap <leader>s :action GotoSymbol<CR>
 
 nmap <leader>l :action NextTab<CR>
 nmap <leader>h :action PreviousTab<CR>

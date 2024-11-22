@@ -527,5 +527,3 @@ y = 0
 
 [env]
 TERM = "xterm-256color"
-
-

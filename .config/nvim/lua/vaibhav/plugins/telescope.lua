@@ -40,5 +40,8 @@ return {
 		keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Live grep" })
 		keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
 		keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
+
+		-- LSP Pickers
+		keymap.set("n", "<leader>sy", builtin.lsp_document_symbols, { desc = "Document Symbols" })
 	end,
 }
