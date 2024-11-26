@@ -114,3 +114,14 @@ return {
 		vim.cmd.colorscheme("catppuccin")
 	end,
 }
+
+-- return {
+-- 	"folke/tokyonight.nvim",
+-- 	lazy = false,
+-- 	priority = 1000,
+-- 	opts = {},
+-- 	config = function(opts)
+-- 		require("tokyonight").setup(opts)
+-- 		vim.cmd([[colorscheme tokyonight-moon]])
+-- 	end,
+-- }
