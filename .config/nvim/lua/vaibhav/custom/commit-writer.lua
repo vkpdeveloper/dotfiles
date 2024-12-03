@@ -10,24 +10,26 @@ PROMPT = [[
     -- - -> lines removed
     -- ~ -> lines modified
 
-    diff format:
+    -- DIFF EXAMPLE --
     file_name:
     + line_number: line_content
 
-    #diffs#
-
-    Commit message format:
+    -- FORMAT --
     <type>(<scope>): <subject>
 
     <body>
 
     <footer>
 
-    note:
+    -- RULES --
     - make sure to follow the format and only respond in the given format and nothing else should be there in the resoonse.
     - type, scope and subject are mandatory
     - make sure the subject is less than 50 characters
     - body is under 350 characters
+
+    -- INPUT --
+
+    #diffs#
 ]]
 
 OLLAMA_API_ENDPOINT = "http://localhost:11434/api/generate"
@@ -82,6 +84,9 @@ local function commit_writer(model_name)
     end
 
     prompt = prompt:gsub("#diffs#", diff_str)
+
+    -- copy the prompt to the clipboard
+    vim.fn.setreg('+', prompt)
 
     vim.schedule(function()
         vim.notify("Generating commit message...")
