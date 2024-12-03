@@ -4,7 +4,15 @@
 -- ]]
 
 PROMPT = [[
-    Write a commit message for the following changes (#branch_name#) in the following files:
+    You are a git commit writer, your task is to analyse the given code changes and generate a commit message in the given format based on the given diffs.
+    diff via:
+    -- + -> lines added
+    -- - -> lines removed
+    -- ~ -> lines modified
+
+    diff format:
+    file_name:
+    + line_number: line_content
 
     #diffs#
 
