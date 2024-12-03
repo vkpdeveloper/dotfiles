@@ -41,6 +41,11 @@ local function commit_writer(model_name)
         3. insert the commit message in the git COMMIT_EDITING buffer
     ]] --
 
+    local current_buffer_name = vim.api.nvim_buf_get_name(0)
+    if current_buffer_name ~= "COMMIT_EDITMSG" then
+        vim.notify("Please open the COMMIT_EDITMSG buffer to use the commit writer.")
+    end
+
     local diffs = {}
 
     local branch_name = vim.fn.system("git symbolic-ref --short HEAD"):gsub("\n$", "")
