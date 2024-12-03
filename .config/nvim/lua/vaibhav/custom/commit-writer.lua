@@ -54,6 +54,7 @@ local function commit_writer(model_name)
     local current_buffer_name = vim.api.nvim_buf_get_name(0)
     if current_buffer_name ~= "COMMIT_EDITMSG" then
         vim.notify("Please open the COMMIT_EDITMSG buffer to use the commit writer.")
+        return
     end
 
     local diffs = {}
