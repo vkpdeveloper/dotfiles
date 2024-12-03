@@ -52,7 +52,7 @@ local function commit_writer(model_name)
     ]] --
 
     local current_buffer_name = vim.api.nvim_buf_get_name(0)
-    if current_buffer_name ~= "COMMIT_EDITMSG" then
+    if current_buffer_name:find("COMMIT_EDITMSG") == nil then
         vim.notify("Please open the COMMIT_EDITMSG buffer to use the commit writer.")
         return
     end
