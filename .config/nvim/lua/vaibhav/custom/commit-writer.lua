@@ -32,7 +32,8 @@ PROMPT = [[
     #diffs#
 ]]
 
-OLLAMA_API_ENDPOINT = "http://localhost:11434/api/generate"
+CLAUDE_API_ENDPOINT = "https://api.anthropic.com/v1/messages"
+CLAUDE_API_KEY = vim.env.CLAUDE_API_KEY
 
 local function split_into_lines(text)
     local lines = {}
@@ -67,7 +68,7 @@ local function commit_writer(model_name)
 
     for _, file_path in ipairs(modified_file_paths) do
         local modified_path = file_path:gsub(git_repo_path, "")
-        local diff = vim.fn.system("git diff " .. modified_path):gsub("\n$", "")
+        local diff = vim.fn.system("git diff --staged " .. modified_path):gsub("\n$", "")
         diffs[file_path] = diff
     end
 
@@ -93,9 +94,10 @@ local function commit_writer(model_name)
         vim.notify("Generating commit message...")
         -- First, create a proper table structure
         local request_body = {
+            model = "claude-3-5-sonnet-20241022",
+            max_tokens = 512,
+            system = prompt,
             stream = false,
-            prompt = prompt,
-            model = model_name,
         }
 
         -- Convert to JSON properly using vim.fn.json_encode
@@ -107,12 +109,15 @@ local function commit_writer(model_name)
             "-s",
             "-X", "POST",
             "-H", "Content-Type: application/json",
+            "-H", "anthropic-version: 2023-06-01",
+            "-H", "x-api-key: " .. CLAUDE_API_KEY,
             "-d", post_data,
-            OLLAMA_API_ENDPOINT
+            CLAUDE_API_ENDPOINT
         })
 
         local json_response = vim.fn.json_decode(response)
-        local commit_message = split_into_lines(json_response.response)
+        local commit_message = json_response.content[1].text
+        commit_message = split_into_lines(json_response.response)
 
         -- Insert the commit message in the buffer
         local cursor_pos = vim.api.nvim_win_get_cursor(0)[1]
@@ -123,6 +128,7 @@ end
 
 vim.keymap.set("n", "<leader>gw", function()
     local model_name = "qwen2.5-coder:7b"
+    -- local model_name = "llama3.2:latest"
     commit_writer(model_name)
 end, { silent = true })
 
