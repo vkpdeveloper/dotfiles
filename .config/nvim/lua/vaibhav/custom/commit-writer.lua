@@ -98,6 +98,12 @@ local function commit_writer(model_name)
             max_tokens = 512,
             system = prompt,
             stream = false,
+            messages = {
+                {
+                    role = "user",
+                    content = "Generate the commit"
+                }
+            }
         }
 
         -- Convert to JSON properly using vim.fn.json_encode
@@ -117,7 +123,7 @@ local function commit_writer(model_name)
 
         local json_response = vim.fn.json_decode(response)
         local commit_message = json_response.content[1].text
-        commit_message = split_into_lines(json_response.response)
+        commit_message = split_into_lines(commit_message)
 
         -- Insert the commit message in the buffer
         local cursor_pos = vim.api.nvim_win_get_cursor(0)[1]
