@@ -95,7 +95,7 @@ local function commit_writer(model_name)
         -- First, create a proper table structure
         local request_body = {
             model = "claude-3-5-sonnet-20241022",
-            max_tokens = 512,
+            max_tokens = 300,
             system = prompt,
             stream = false,
             messages = {
