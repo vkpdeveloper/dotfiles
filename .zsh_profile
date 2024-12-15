@@ -6,6 +6,7 @@ export PATH="$PATH:/opt/flutter/bin"
 export PATH="$PATH:/home/$USER/Android/Sdk/platform-tools"
 export CHROME_EXECUTABLE="/usr/bin/google-chrome-stable"
 export TERMINAL="/usr/bin/alacritty"
+export PATH="$PATH:/opt/zig"
 
 # # Conda setup
 # export PATH="$PATH:/opt/anaconda/bin"
