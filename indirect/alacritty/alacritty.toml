@@ -1,60 +1,55 @@
-
 [env]
 TERM = "xterm-256color"
 
 [window]
-decorations = "none"
+decorations = "full"
 dynamic_padding = false
-opacity = 0.85
 
 [window.padding]
-x = 5
-y = 10
+x = 0
+y = 0
 
 [bell]
 animation = "EaseOutExpo"
 color = "0xffffff"
 duration = 0
 
-[colors]
-draw_bold_text_with_bright_colors = false
-
 # Kanagawa Alacritty Colors
-[colors.primary]
-background = '#181616'
-foreground = '#c5c9c5'
+#[colors.primary]
+# background = '#181616'
+# foreground = '#c5c9c5'
+#
+#[colors.normal]
+# black = '#0d0c0c'
+# red = '#c4746e'
+# green = '#8a9a7b'
+# yellow = '#c4b28a'
+# blue = '#8ba4b0'
+# magenta = '#a292a3'
+# cyan = '#8ea4a2'
+# white = '#C8C093'
+#
+#[colors.bright]
+# black = '#a6a69c'
+# red = '#E46876'
+# green = '#87a987'
+# yellow = '#E6C384'
+# blue = '#7FB4CA'
+# magenta = '#938AA9'
+# cyan = '#7AA89F'
+# white = '#c5c9c5'
 
-[colors.normal]
-black = '#0d0c0c'
-red = '#c4746e'
-green = '#8a9a7b'
-yellow = '#c4b28a'
-blue = '#8ba4b0'
-magenta = '#a292a3'
-cyan = '#8ea4a2'
-white = '#C8C093'
+#[colors.selection]
+# background = '#2D4F67'
+# foreground = '#C8C093'
 
-  [colors.bright]
-black = '#a6a69c'
-red = '#E46876'
-green = '#87a987'
-yellow = '#E6C384'
-blue = '#7FB4CA'
-magenta = '#938AA9'
-cyan = '#7AA89F'
-white = '#c5c9c5'
-
-  [colors.selection]
-background = '#2D4F67'
-foreground = '#C8C093'
-
-[[colors.indexed_colors]]
-index = 16
-color = '#b6927b'
-
-[[colors.indexed_colors]]
-index = 17
-color = '#b98d7b'
+# [[colors.indexed_colors]]
+# index = 16
+# color = '#b6927b'
+#
+# [[colors.indexed_colors]]
+# index = 17
+# color = '#b98d7b'
 
 [cursor]
 style = "Block"
@@ -65,6 +60,45 @@ log_level = "OFF"
 persistent_logging = false
 print_events = false
 render_timer = false
+
+# New Theme thdxr
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "0x5c6370"
+blue = "0x61afef"
+cyan = "0x56b6c2"
+green = "0x98c379"
+magenta = "0xc678dd"
+red = "0xe06c75"
+white = "0xe6efff"
+yellow = "0xd19a66"
+
+[colors.dim]
+black = "0x1e2127"
+blue = "0x61afef"
+cyan = "0x56b6c2"
+green = "0x98c379"
+magenta = "0xc678dd"
+red = "0xe06c75"
+white = "0x828791"
+yellow = "0xd19a66"
+
+[colors.normal]
+black = "0x1e2127"
+blue = "0x61afef"
+cyan = "0x56b6c2"
+green = "0x98c379"
+magenta = "0xc678dd"
+red = "0xe06c75"
+white = "0x828791"
+yellow = "0xd19a66"
+
+[colors.primary]
+background = "0x1e2127"
+bright_foreground = "0xe6efff"
+foreground = "0xabb2bf"
 
 # [font]
 # size = 18.0
@@ -104,7 +138,30 @@ style = "Medium Italic"
 family = "JetBrainsMono Nerd Font"
 style = "Medium"
 
+[font.offset]
+x = 0
+y = 0
+
+[font.glyph_offset]
+x = 0
+y = 0
+
 [keyboard]
 bindings = [
   { key = "F", mods = "Command", action = "ToggleMaximized" }
 ]
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+[mouse]
+hide_when_typing = false
+
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"

@@ -57,63 +57,63 @@
 -- 	end,
 -- }
 
-return {
-	"catppuccin/nvim",
-	priority = 1000,
-	name = "catppuccin",
-	config = function()
-		require("catppuccin").setup({
-			flavour = "mocha",
-			no_italic = true,
-			term_colors = false,
-			transparent_background = true,
-			styles = {
-				comments = {},
-				conditionals = {},
-				loops = {},
-				functions = {},
-				keywords = {},
-				strings = {},
-				variables = {},
-				numbers = {},
-				booleans = {},
-				properties = {},
-				types = {},
-			},
-			color_overrides = {
-				mocha = {
-					base = "#000000",
-					mantle = "#000000",
-					crust = "#000000",
-				},
-			},
-			-- integrations = {
-			-- 	telescope = {
-			-- 		enabled = true,
-			-- 		style = "nvchad",
-			-- 	},
-			-- },
-			default_integrations = true,
-			integrations = {
-				cmp = true,
-				gitsigns = true,
-				nvimtree = true,
-				treesitter = true,
-				notify = false,
-				mini = {
-					enabled = true,
-					indentscope_color = "",
-				},
-				dropbar = {
-					enabled = true,
-					color_mode = true,
-				},
-				-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-			},
-		})
-		vim.cmd.colorscheme("catppuccin")
-	end,
-}
+-- return {
+--     "catppuccin/nvim",
+--     priority = 1000,
+--     name = "catppuccin",
+--     config = function()
+--         require("catppuccin").setup({
+--             flavour = "mocha",
+--             no_italic = true,
+--             term_colors = false,
+--             transparent_background = true,
+--             styles = {
+--                 comments = {},
+--                 conditionals = {},
+--                 loops = {},
+--                 functions = {},
+--                 keywords = {},
+--                 strings = {},
+--                 variables = {},
+--                 numbers = {},
+--                 booleans = {},
+--                 properties = {},
+--                 types = {},
+--             },
+--             color_overrides = {
+--                 mocha = {
+--                     base = "#000000",
+--                     mantle = "#000000",
+--                     crust = "#000000",
+--                 },
+--             },
+--             -- integrations = {
+--             -- 	telescope = {
+--             -- 		enabled = true,
+--             -- 		style = "nvchad",
+--             -- 	},
+--             -- },
+--             default_integrations = true,
+--             integrations = {
+--                 cmp = true,
+--                 gitsigns = true,
+--                 nvimtree = true,
+--                 treesitter = true,
+--                 notify = false,
+--                 mini = {
+--                     enabled = true,
+--                     indentscope_color = "",
+--                 },
+--                 dropbar = {
+--                     enabled = true,
+--                     color_mode = true,
+--                 },
+--                 -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+--             },
+--         })
+--         vim.cmd.colorscheme("catppuccin")
+--     end,
+-- }
 
 -- return {
 -- 	"folke/tokyonight.nvim",
@@ -125,3 +125,15 @@ return {
 -- 		vim.cmd([[colorscheme tokyonight-moon]])
 -- 	end,
 -- }
+
+return {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+        require("tokyonight").setup({
+            style = "night",
+        })
+        vim.cmd([[colorscheme tokyonight]])
+    end,
+}
