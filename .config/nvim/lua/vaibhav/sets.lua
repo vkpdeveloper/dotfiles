@@ -6,6 +6,8 @@ vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
+vim.o.wrap = true
+
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -27,7 +29,7 @@ vim.o.undofile = true
 vim.wo.signcolumn = "yes"
 
 -- Decrease update time
-vim.o.updatetime = 250
+vim.o.updatetime = 50
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
@@ -93,3 +95,5 @@ vim.opt.mouse = ""
 
 vim.opt.showcmd = true
 vim.opt.title = true
+
+vim.opt.spell = true

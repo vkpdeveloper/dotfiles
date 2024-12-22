@@ -1,5 +1,5 @@
 require("vaibhav.remap")
 require("vaibhav.sets")
 require("vaibhav.lazy")
-require("vaibhav.custom.progress-bar")
 require("vaibhav.custom.commit-writer")
+require("vaibhav.custom.visual-broswer")

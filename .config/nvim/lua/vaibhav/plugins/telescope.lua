@@ -16,7 +16,27 @@ return {
 			defaults = {
 				file_ignore_patterns = { "node_modules", "dist", "build", "target", "vendor" },
 			},
+			pickers = {
+				find_files = {
+					theme = "ivy",
+				},
+				buffers = {
+					theme = "ivy",
+				},
+				live_grep = {
+					theme = "ivy",
+				},
+			},
+			extensions = {
+				fzf = {
+					fuzzy = true,
+					override_generic_sorter = true,
+					override_file_sorter = true,
+					case_mode = "smart_case",
+				},
+			},
 		})
+
 		telescope.load_extension("fzf")
 		telescope.load_extension("dap")
 
