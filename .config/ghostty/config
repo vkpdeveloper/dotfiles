@@ -1,0 +1,19 @@
+font-family = JetBrainsMono Nerd Font
+font-family-bold = JetBrainsMono Nerd Font
+font-family-italic = JetBrainsMono Nerd Font
+font-family-bold-italic = JetBrainsMono Nerd Font
+
+font-size = 10
+shell-integration-features = no-cursor
+cursor-style = "block"
+cursor-style-blink = "true"
+theme = "tokyonight"
+
+class = "vaibhav.ghostty"
+
+window-decoration = "false"
+window-theme = "dark"
+window-save-state = "never"
+
+auto-update = "download"
+auto-update-channel = "stable"
