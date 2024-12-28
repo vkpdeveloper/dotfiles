@@ -132,13 +132,10 @@ export GTK_THEME=Adwaita-dark
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-eval $(opam env)
 export TMUX_F_DIR="/home/$USER/Developer"
 export PATH=$HOME/.local/bin:$PATH
 source <(fzf --zsh)
 export QT_QPA_PLATFORMTHEME="qt5ct"
-
-eval $(opam env --switch=default)
 
 source ~/.screen-env
 

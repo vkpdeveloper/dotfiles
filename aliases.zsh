@@ -43,7 +43,7 @@ alias open="xdg-open"
 
 alias itday="ssh itday"
 
-alias gh="history|grep"
+alias ghg="history|grep"
 
 alias vi="nvim"
 alias vim="nvim"

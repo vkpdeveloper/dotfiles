@@ -266,3 +266,5 @@ exec xset -dpms
 exec "xautolock -detectsleep -time 25 -locker \"i3lock -c 121212\""
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always picom --config /home/$USER/.config/picom/picom.conf
+
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
