@@ -23,21 +23,21 @@ render_timer = false
 [font]
 size = 10.0
 
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Medium"
+
 [font.bold]
 family = "JetBrainsMono Nerd Font"
-style = "Heavy"
-
-[font.bold_italic]
-family = "JetBrainsMono Nerd Font"
-style = "Heavy Italic"
+style = "Bold"
 
 [font.italic]
 family = "JetBrainsMono Nerd Font"
 style = "Medium Italic"
 
-[font.normal]
+[font.bold_italic]
 family = "JetBrainsMono Nerd Font"
-style = "Medium"
+style = "Bold Italic"
 
 [font.glyph_offset]
 x = 0
