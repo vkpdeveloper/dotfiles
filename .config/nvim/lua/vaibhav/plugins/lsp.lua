@@ -4,7 +4,7 @@ return {
 	branch = "v3.x",
 	dependencies = {
 		{ "neovim/nvim-lspconfig" },
-		{ "saghen/blink.cmp" },
+		-- { "saghen/blink.cmp" },
 		{
 			"williamboman/mason.nvim",
 			opts = {
@@ -33,7 +33,7 @@ return {
 		lsp.preset("recommended")
 
 		local lspconfig = require("lspconfig")
-		local blinkCapabilities = require("blink.cmp").get_lsp_capabilities()
+		-- local blinkCapabilities = require("blink.cmp").get_lsp_capabilities()
 
 		require("mason").setup()
 		require("mason-lspconfig").setup({
@@ -99,7 +99,7 @@ return {
 			"prismals",
 			"clangd",
 		}, {
-			capabilities = blinkCapabilities,
+			-- capabilities = blinkCapabilities,
 		})
 
 		lsp.on_attach(function(client, bufnr)
