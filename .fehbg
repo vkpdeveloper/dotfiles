@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-fill '/home/vaibhav/.config/i3/assets/wallpapers/1.jpg' '/home/vaibhav/.config/i3/assets/wallpapers/7.jpg' '/home/vaibhav/.config/i3/assets/wallpapers/2.jpg' '/home/vaibhav/.config/i3/assets/wallpapers/4.jpg' '/home/vaibhav/.config/i3/assets/wallpapers/6.jpg' '/home/vaibhav/.config/i3/assets/wallpapers/5.jpg' '/home/vaibhav/.config/i3/assets/wallpapers/3.jpg' 
+feh --no-fehbg --bg-fill '/home/vaibhav/.config/i3/assets/wallpapers/5.jpg' '/home/vaibhav/.config/i3/assets/wallpapers/7.jpg' '/home/vaibhav/.config/i3/assets/wallpapers/6.jpg' '/home/vaibhav/.config/i3/assets/wallpapers/3.jpg' '/home/vaibhav/.config/i3/assets/wallpapers/4.jpg' '/home/vaibhav/.config/i3/assets/wallpapers/1.jpg' '/home/vaibhav/.config/i3/assets/wallpapers/2.jpg' 
