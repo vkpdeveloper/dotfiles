@@ -212,7 +212,7 @@ bindsym $sup+$mod+d mode "$mode_display"
 
 # Navigator Assignments
 assign [class="Alacritty" instance="Alacritty"] $term
-assign [class="ghostty" instance="vaibhav.ghostty"] $term
+assign [class="ghostty" instance="ghostty"] $term
 assign [class="firefox" instance="Navigator"] $browser
 assign [class="Brave-browser" instance="brave-browser"] $browser
 assign [class="Code" instance="code"] $code
