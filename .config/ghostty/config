@@ -22,8 +22,8 @@ auto-update-channel = "stable"
 keybind = ctrl+shift+l=new_split:right
 keybind = ctrl+shift+h=new_split:left
 
-keybind = ctrl+l=goto_split:right
-keybind = ctrl+h=goto_split:left
+# keybind = ctrl+l=goto_split:right
+# keybind = ctrl+h=goto_split:left
 
 keybind = ctrl+shift+r=reload_config
 
