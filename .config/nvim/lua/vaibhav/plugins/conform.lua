@@ -27,6 +27,7 @@ return {
 			python = { "black" },
 			javascript = { { "prettierd" } },
 			typescript = { { "prettierd" } },
+			jsx = { { "prettierd" } },
 			graphql = { { "prettierd" } },
 			rust = { { "rustfmt" } },
 			go = { { "goimports", "goimports-reviser" } },
