@@ -96,4 +96,4 @@ vim.opt.mouse = ""
 vim.opt.showcmd = true
 vim.opt.title = true
 
-vim.opt.spell = true
+vim.opt.spell = false
