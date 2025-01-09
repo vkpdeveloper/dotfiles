@@ -9,7 +9,9 @@ shell-integration-features = no-cursor
 cursor-style = "block"
 cursor-style-blink = "true"
 theme = "tokyonight"
+window-colorspace = "display-p3"
 
+title = "Ghostty"
 class = "vaibhav.ghostty"
 
 window-decoration = "false"
@@ -18,6 +20,8 @@ window-save-state = "never"
 
 auto-update = "download"
 auto-update-channel = "stable"
+window-save-state = "never"
+resize-overlay = "never"
 
 # all my keybindings
 keybind = ctrl+shift+l=new_split:right
@@ -29,3 +33,4 @@ keybind = ctrl+shift+h=new_split:left
 keybind = ctrl+shift+r=reload_config
 
 keybind = ctrl+l=clear_screen
+
