@@ -3,7 +3,7 @@ font-family-bold = JetBrainsMono Nerd Font
 font-family-italic = JetBrainsMono Nerd Font
 font-family-bold-italic = JetBrainsMono Nerd Font
 
-font-size = 10
+font-size = 15
 font-feature = "-calt"
 shell-integration-features = no-cursor
 cursor-style = "block"
