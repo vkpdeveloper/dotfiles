@@ -1,4 +1,4 @@
-cmd - return : open -n -a "Alacritty"
+cmd - return : open -n -a "Ghostty"
 
 cmd + shift - b : open -n -a "Brave Browser.app" 
 
