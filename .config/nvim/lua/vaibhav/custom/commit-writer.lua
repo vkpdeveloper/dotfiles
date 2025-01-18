@@ -18,30 +18,37 @@ PROMPT = [[
     <type>(<scope>): <subject>
 
     <body>
-
-    <footer>
+    -- FORMAT END --
 
     -- RULES --
     - make sure to follow the format and only respond in the given format and nothing else should be there in the resoonse.
     - type, scope and subject are mandatory
     - make sure the subject is less than 50 characters
     - body is under 350 characters
+    - make sure to not add any other information that is not part of the commit message like author name and email or issue number or anything like that
+    -- RULES END --
 
     -- INPUT --
 
     #diffs#
+    -- INPUT END --
 ]]
 
 CLAUDE_API_ENDPOINT = "https://api.anthropic.com/v1/messages"
 CLAUDE_API_KEY = vim.env.CLAUDE_API_KEY
 
-local function split_into_lines(text)
-    local lines = {}
-    -- This pattern matches text between newlines, including empty lines
-    for line in (text .. "\n"):gmatch("(.-)\n") do
-        table.insert(lines, line)
-    end
-    return lines
+local function handle_stream_chunk(data, callback)
+    vim.schedule(function()
+        local json_data = data:match("^data: (.+)")
+        if json_data then
+            local success, decoded = pcall(vim.json.decode, json_data)
+            if success then
+                if decoded.type == "content_block_delta" then
+                    callback(decoded.delta.text)
+                end
+            end
+        end
+    end)
 end
 
 local function commit_writer(model_name)
@@ -53,10 +60,10 @@ local function commit_writer(model_name)
     ]] --
 
     local current_buffer_name = vim.api.nvim_buf_get_name(0)
-    if current_buffer_name:find("COMMIT_EDITMSG") == nil then
-        vim.notify("Please open the COMMIT_EDITMSG buffer to use the commit writer.")
-        return
-    end
+    -- if current_buffer_name:find("COMMIT_EDITMSG") == nil then
+    --     vim.notify("Please open the COMMIT_EDITMSG buffer to use the commit writer.")
+    --     return
+    -- end
 
     local diffs = {}
 
@@ -90,6 +97,48 @@ local function commit_writer(model_name)
     -- copy the prompt to the clipboard
     vim.fn.setreg('+', prompt)
 
+    local commit_message = ""
+    local current_line = ""
+    local line_number = nil
+
+    local function update_message(chunk)
+        commit_message = commit_message .. chunk
+
+        vim.schedule(function()
+            -- Initialize line number if not set
+            if not line_number then
+                local pos = vim.api.nvim_win_get_cursor(0)
+                line_number = pos[1] - 1 -- Convert to 0-based index
+            end
+
+            -- Append chunk to current line
+            current_line = current_line .. chunk
+
+            -- Split the current line by newlines
+            local lines = vim.split(current_line, "\n", { plain = true })
+
+            -- If we have multiple lines, write all complete lines
+            if #lines > 1 then
+                for i = 1, #lines - 1 do
+                    vim.api.nvim_buf_set_lines(0, line_number, line_number + 1, false, { lines[i] })
+                    line_number = line_number + 1
+                end
+                -- Keep the last incomplete line in current_line
+                current_line = lines[#lines]
+            end
+
+            -- If the chunk ends with a newline, write the current line and reset it
+            if chunk:match("\n$") then
+                vim.api.nvim_buf_set_lines(0, line_number, line_number + 1, false, { current_line })
+                line_number = line_number + 1
+                current_line = ""
+            end
+
+            -- Always ensure the current incomplete line is visible
+            vim.api.nvim_buf_set_lines(0, line_number, line_number + 1, false, { current_line })
+        end)
+    end
+
     vim.schedule(function()
         vim.notify("Generating commit message...")
         -- First, create a proper table structure
@@ -97,7 +146,7 @@ local function commit_writer(model_name)
             model = "claude-3-5-sonnet-20241022",
             max_tokens = 300,
             system = prompt,
-            stream = false,
+            stream = true,
             messages = {
                 {
                     role = "user",
@@ -106,29 +155,24 @@ local function commit_writer(model_name)
             }
         }
 
-        -- Convert to JSON properly using vim.fn.json_encode
         local post_data = vim.fn.json_encode(request_body)
 
+        local curl = require('plenary.curl')
+        local headers = {
+            ["Content-Type"] = "application/json",
+            ["anthropic-version"] = "2023-06-01",
+            ["x-api-key"] = CLAUDE_API_KEY
+        }
+
         -- Make the curl request with proper escaping
-        local response = vim.fn.system({
-            "curl",
-            "-s",
-            "-X", "POST",
-            "-H", "Content-Type: application/json",
-            "-H", "anthropic-version: 2023-06-01",
-            "-H", "x-api-key: " .. CLAUDE_API_KEY,
-            "-d", post_data,
-            CLAUDE_API_ENDPOINT
+
+        local response = curl.post(CLAUDE_API_ENDPOINT, {
+            body = post_data,
+            headers = headers,
+            stream = function(err, chunk, _)
+                handle_stream_chunk(chunk, update_message)
+            end,
         })
-
-        local json_response = vim.fn.json_decode(response)
-        local commit_message = json_response.content[1].text
-        commit_message = split_into_lines(commit_message)
-
-        -- Insert the commit message in the buffer
-        local cursor_pos = vim.api.nvim_win_get_cursor(0)[1]
-        vim.api.nvim_buf_set_lines(0, cursor_pos, cursor_pos, false, commit_message)
-        vim.notify('commit message generated')
     end)
 end
 
@@ -137,5 +181,7 @@ vim.keymap.set("n", "<leader>gw", function()
     -- local model_name = "llama3.2:latest"
     commit_writer(model_name)
 end, { silent = true })
+
+
 
 vim.keymap.set('n', '<leader>so', '<cmd>so %<cr>', { silent = true })
