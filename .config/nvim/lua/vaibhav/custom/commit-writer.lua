@@ -26,6 +26,7 @@ PROMPT = [[
     - make sure the subject is less than 50 characters
     - body is under 350 characters
     - make sure to not add any other information that is not part of the commit message like author name and email or issue number or anything like that
+    - make sure the commit body is formated like a markdown list-item or a bullet point and covers everything that has changed based on the diff
     -- RULES END --
 
     -- INPUT --
