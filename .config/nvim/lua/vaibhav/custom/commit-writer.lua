@@ -61,10 +61,10 @@ local function commit_writer(model_name)
     ]] --
 
     local current_buffer_name = vim.api.nvim_buf_get_name(0)
-    -- if current_buffer_name:find("COMMIT_EDITMSG") == nil then
-    --     vim.notify("Please open the COMMIT_EDITMSG buffer to use the commit writer.")
-    --     return
-    -- end
+    if current_buffer_name:find("COMMIT_EDITMSG") == nil then
+        vim.notify("Please open the COMMIT_EDITMSG buffer to use the commit writer.")
+        return
+    end
 
     local diffs = {}
 
@@ -144,7 +144,7 @@ local function commit_writer(model_name)
         vim.notify("Generating commit message...")
         -- First, create a proper table structure
         local request_body = {
-            model = "claude-3-5-sonnet-20241022",
+            model = model_name,
             max_tokens = 300,
             system = prompt,
             stream = true,
@@ -178,8 +178,7 @@ local function commit_writer(model_name)
 end
 
 vim.keymap.set("n", "<leader>gw", function()
-    local model_name = "qwen2.5-coder:7b"
-    -- local model_name = "llama3.2:latest"
+    local model_name = "claude-3-5-sonnet-20241022"
     commit_writer(model_name)
 end, { silent = true })
 
