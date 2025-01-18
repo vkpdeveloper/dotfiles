@@ -53,13 +53,6 @@ local function handle_stream_chunk(data, callback)
 end
 
 local function commit_writer(model_name)
-    --[[
-        IDEA: an ai based commit writer based on code diffs in all the git changes
-        1. get all modified files from git with exact diffs
-        2. use ollama to generate commit message based on the collected diffs
-        3. insert the commit message in the git COMMIT_EDITING buffer
-    ]] --
-
     local current_buffer_name = vim.api.nvim_buf_get_name(0)
     if current_buffer_name:find("COMMIT_EDITMSG") == nil then
         vim.notify("Please open the COMMIT_EDITMSG buffer to use the commit writer.")
