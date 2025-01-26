@@ -40,6 +40,7 @@ CLAUDE_API_KEY = vim.env.CLAUDE_API_KEY
 
 local function handle_stream_chunk(data, callback)
 	if data == nil then
+		callback("")
 		return
 	end
 	vim.schedule(function()
