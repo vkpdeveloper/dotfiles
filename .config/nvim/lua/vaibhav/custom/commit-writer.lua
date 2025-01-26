@@ -39,9 +39,11 @@ CLAUDE_API_ENDPOINT = "https://api.anthropic.com/v1/messages"
 CLAUDE_API_KEY = vim.env.CLAUDE_API_KEY
 
 local function handle_stream_chunk(data, callback)
+	if data == nil then
+		return
+	end
 	vim.schedule(function()
 		local json_data = data:match("^data: (.+)")
-
 		if json_data then
 			local success, decoded = pcall(vim.json.decode, json_data)
 			if success then
