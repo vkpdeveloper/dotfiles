@@ -64,19 +64,23 @@ local function commit_writer(model_name)
 	local branch_name = vim.fn.system("git symbolic-ref --short HEAD"):gsub("\n$", "")
 
 	local git_repo_path = vim.fn.system("git rev-parse --show-prefix"):gsub("\n$", "")
-	local modified_file_paths = vim.fn.systemlist("git diff --name-only " .. branch_name)
-	local untracked_file_paths = vim.fn.systemlist("git ls-files --others --exclude-standard")
+	-- local modified_file_paths = vim.fn.systemlist("git diff --name-only " .. branch_name)
+	-- local untracked_file_paths = vim.fn.systemlist("git ls-files --others --exclude-standard")
+	local modified_files = vim.fn.systemlist("git diff --cached --name-only")
+	local untracked_files = vim.fn.systemlist("git ls-files --others --exclude-standard")
 
-	for _, file_path in ipairs(modified_file_paths) do
-		local modified_path = file_path:gsub(git_repo_path, "")
-		local diff = vim.fn.system("git diff --staged " .. modified_path):gsub("\n$", "")
-		diffs[file_path] = diff
+	for _, file in ipairs(modified_files) do
+		local diff = vim.fn.system("git diff --cached " .. vim.fn.shellescape(file))
+		if diff ~= "" then
+			diffs[file] = diff
+		end
 	end
 
-	for _, file_path in ipairs(untracked_file_paths) do
-		local modified_path = file_path:gsub(git_repo_path, "")
-		local diff = vim.fn.system('cat "' .. modified_path .. '"'):gsub("\n$", "")
-		diffs[file_path] = diff
+	for _, file in ipairs(untracked_files) do
+		local file_content = vim.fn.system("cat " .. vim.fn.shellescape(file))
+		if file_content ~= "" then
+			diffs[file] = file_content
+		end
 	end
 
 	local prompt = PROMPT:gsub("#branch_name#", branch_name)
