@@ -41,6 +41,7 @@ CLAUDE_API_KEY = vim.env.CLAUDE_API_KEY
 local function handle_stream_chunk(data, callback)
 	vim.schedule(function()
 		local json_data = data:match("^data: (.+)")
+
 		if json_data then
 			local success, decoded = pcall(vim.json.decode, json_data)
 			if success then
