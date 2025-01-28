@@ -23,28 +23,26 @@ return {
 		log_level = vim.log.levels.ERROR,
 		formatters_by_ft = {
 			lua = { "stylua" },
-			-- Conform can also run multiple formatters sequentially
-			python = { "black" },
-			javascript = { { "prettierd" } },
-			typescript = { { "prettierd" } },
-			jsx = { { "prettierd" } },
-			graphql = { { "prettierd" } },
-			rust = { { "rustfmt" } },
-			go = { { "goimports", "goimports-reviser" } },
-			yaml = { { "prettierd" } },
-			json = { { "prettierd" } },
-			html = { { "prettierd" } },
-			css = { { "prettierd" } },
-			markdown = { { "prettierd" } },
-			php = { { "phpcbf" } },
-			scala = { { "scalafmt" } },
-			sql = { { "sqlfmt" } },
+			python = { "ruff" },
+			javascript = { "prettierd" },
+			typescript = { "prettierd" },
+			jsx = { "prettierd" },
+			graphql = { "prettierd" },
+			rust = { "rustfmt" },
+			go = { "goimports", "goimports-reviser" },
+			yaml = { "prettierd" },
+			json = { "prettierd" },
+			html = { "prettierd" },
+			css = { "prettierd" },
+			markdown = { "prettierd" },
+			php = { "phpcbf" },
+			scala = { "scalafmt" },
+			sql = { "sqlfmt" },
 		},
 	},
 	config = function(_, opts)
 		local conform = require("conform")
 		conform.setup(opts)
-
 		conform.formatters.prettier = {
 			prepend_args = { "--prose-wrap", "always" },
 		}
