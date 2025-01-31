@@ -15,6 +15,7 @@ title = "Ghostty"
 class = "vaibhav.ghostty"
 
 window-decoration = "false"
+macos-non-native-fullscreen = "true"
 window-vsync = "true"
 macos-titlebar-style = "hidden"
 window-theme = "dark"
