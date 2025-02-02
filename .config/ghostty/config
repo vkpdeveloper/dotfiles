@@ -33,6 +33,3 @@ keybind = ctrl+shift+h=new_split:left
 # keybind = ctrl+h=goto_split:left
 
 keybind = ctrl+shift+r=reload_config
-
-keybind = ctrl+l=clear_screen
-
