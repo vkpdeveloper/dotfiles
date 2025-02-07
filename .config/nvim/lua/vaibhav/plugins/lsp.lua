@@ -47,7 +47,6 @@ return {
 		require("mason").setup()
 		require("mason-lspconfig").setup({
 			ensure_installed = {
-				"ts_ls",
 				"rust_analyzer",
 				"clangd",
 				"golangci_lint_ls",
@@ -110,16 +109,16 @@ return {
 			-- capabilities = blinkCapabilities,
 		})
 
-		lspconfig.ts_ls.setup({
-			on_attach = lsp.on_attach,
-			capabilities = lsp.get_capabilities(),
-			commands = {
-				OrganizeImports = {
-					organize_imports,
-					description = "Organize Imports",
-				},
-			},
-		})
+		-- lspconfig.ts_ls.setup({
+		-- 	on_attach = lsp.on_attach,
+		-- 	capabilities = lsp.get_capabilities(),
+		-- 	commands = {
+		-- 		OrganizeImports = {
+		-- 			organize_imports,
+		-- 			description = "Organize Imports",
+		-- 		},
+		-- 	},
+		-- })
 
 		lsp.on_attach(function(client, bufnr)
 			lsp.default_keymaps({ buffer = bufnr })

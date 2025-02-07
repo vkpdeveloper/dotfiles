@@ -83,6 +83,7 @@ plugins=(
     colorize
     colored-man-pages 
     zsh-autosuggestions
+    autoswitch_virtualenv
 )
 
 source $ZSH/oh-my-zsh.sh
