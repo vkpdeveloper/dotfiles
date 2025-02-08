@@ -45,15 +45,15 @@ yabai -m config window_gap                   15
 
 setup_space 1 term
 setup_space 2 browser
-setup_space 3 postman
-setup_space 4 slack
-setup_space 5 other
+setup_space 3 code
+setup_space 4 postman
+setup_space 5 slack
 
 yabai -m rule --add app="^Alacritty$" space=1
 yabai -m rule --add app="^Brave Browser$" space=2
-yabai -m rule --add app="^Postman$" space=3
-yabai -m rule --add app="^Slack$" space=4
-yabai -m rule --add app="^Mongo$" space=4
+# yabai -m rule --add app="^$" space=3
+yabai -m rule --add app="^Postman$" space=4
+yabai -m rule --add app="^Slack$" space=5
 
 # rules
 ## makes system preferences always floating
