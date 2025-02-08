@@ -146,7 +146,7 @@ local function commit_writer(model_name)
         -- First, create a proper table structure
         local request_body = {
             model = model_name,
-            max_tokens = 300,
+            max_tokens = 800,
             system = prompt,
             stream = true,
             messages = {
