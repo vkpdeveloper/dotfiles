@@ -56,6 +56,30 @@ local function handle_stream_chunk(data, callback)
     end)
 end
 
+local function sanitize_diff(diff_str)
+    if not diff_str then
+        return ""
+    end
+
+    -- List of Lua pattern special characters to escape
+    local special_chars = {
+        "%", "^", "$", "(", ")", ".", "[", "]", "*", "+", "-", "?", "#"
+    }
+
+    local sanitized = diff_str
+    for _, char in ipairs(special_chars) do
+        -- Escape each special character with %
+        -- We need to use % to escape % itself, hence %%
+        if char == "%" then
+            sanitized = sanitized:gsub("%%", "%%%%")
+        else
+            sanitized = sanitized:gsub("%" .. char, "%%" .. char)
+        end
+    end
+
+    return sanitized
+end
+
 local function commit_writer(model_name)
     local current_buffer_name = vim.api.nvim_buf_get_name(0)
     if current_buffer_name:find("COMMIT_EDITMSG") == nil then
@@ -68,8 +92,6 @@ local function commit_writer(model_name)
     local branch_name = vim.fn.system("git symbolic-ref --short HEAD"):gsub("\n$", "")
 
     local git_repo_path = vim.fn.system("git rev-parse --show-prefix"):gsub("\n$", "")
-    -- local modified_file_paths = vim.fn.systemlist("git diff --name-only " .. branch_name)
-    -- local untracked_file_paths = vim.fn.systemlist("git ls-files --others --exclude-standard")
     local modified_files = vim.fn.systemlist("git diff --cached --name-only")
     local untracked_files = vim.fn.systemlist("git ls-files --others --exclude-standard")
 
@@ -87,14 +109,14 @@ local function commit_writer(model_name)
         end
     end
 
-    local prompt = PROMPT:gsub("#branch_name#", branch_name)
     local diff_str = ""
-
     for file_path, diff in pairs(diffs) do
         diff_str = diff_str .. "# " .. file_path .. "\n" .. diff .. "\n\n"
     end
 
-    prompt = prompt:gsub("#diffs#", diff_str)
+    diff_str = sanitize_diff(diff_str)
+
+    local prompt = PROMPT:gsub("#diffs#", diff_str)
 
     -- copy the prompt to the clipboard
     vim.fn.setreg("+", prompt)
@@ -167,7 +189,6 @@ local function commit_writer(model_name)
         }
 
         -- Make the curl request with proper escaping
-
         local response = curl.post(CLAUDE_API_ENDPOINT, {
             body = post_data,
             headers = headers,

@@ -50,7 +50,7 @@ setup_space 4 postman
 setup_space 5 slack
 
 yabai -m rule --add app="^Alacritty$" space=1
-yabai -m rule --add app="^Brave Browser$" space=2
+yabai -m rule --add app="^Zen Browser$" space=2
 # yabai -m rule --add app="^$" space=3
 yabai -m rule --add app="^Postman$" space=4
 yabai -m rule --add app="^Slack$" space=5

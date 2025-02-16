@@ -1,6 +1,6 @@
 cmd - return : open -n -a "Ghostty"
 
-cmd + shift - b : open -n -a "Brave Browser.app" 
+cmd + shift - b : open -n -a "Zen Browser.app" 
 
 # moves focus between windows in the current focused display
 cmd - h : yabai -m window --focus west
