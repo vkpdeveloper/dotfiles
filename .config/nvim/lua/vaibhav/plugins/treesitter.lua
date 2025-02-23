@@ -7,7 +7,7 @@ return {
     },
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        "nvim-treesitter/nvim-treesitter-context"
+        -- "nvim-treesitter/nvim-treesitter-context"
     },
     config = function()
         -- treesitter setup
@@ -148,12 +148,12 @@ return {
         -- treesitter textobjects setup
 
         -- treesitter context setup
-        local treesitterContext = require("treesitter-context")
-        treesitterContext.setup()
+        -- local treesitterContext = require("treesitter-context")
+        -- treesitterContext.setup()
 
-        vim.keymap.set("n", "[c", function()
-            treesitterContext.go_to_context(vim.v.count1)
-        end, { desc = "move to the current context" })
+        -- vim.keymap.set("n", "[c", function()
+        --     treesitterContext.go_to_context(vim.v.count1)
+        -- end, { desc = "move to the current context" })
         -- treesitter context setup
     end,
 }
