@@ -64,3 +64,5 @@ alias onmonitor="xrandr --output HDMI-0 --mode 1920x1080"
 alias yaycache="yay -Scc"
 
 alias python="python3"
+
+alias cat="bat"

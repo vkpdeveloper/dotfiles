@@ -9,5 +9,5 @@ if [ -z "$remote_port" ] || [ -z "$local_port" ] || [ -z "$server" ]; then
     exit 1
 fi
 
-ssh -N -L "$local_port":localhost:"$remote_port" "$server"
+ssh -N -L "0.0.0.0:$local_port":localhost:"$remote_port" "$server"
 

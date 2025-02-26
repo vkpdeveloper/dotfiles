@@ -175,4 +175,3 @@ export PATH="/home/vaibhav/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/vaibhav/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 source /home/$USER/.zsh_secrets
-
