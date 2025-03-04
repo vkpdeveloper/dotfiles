@@ -518,13 +518,13 @@ local function gemini_commit_writer()
 end
 
 -- Add this mapping for Gemini
-vim.keymap.set("n", "<leader>gg", function()
+vim.keymap.set("n", "<leader>gw", function()
     gemini_commit_writer()
 end, { silent = true, desc = "Generate commit message with Gemini" })
 
-vim.keymap.set("n", "<leader>gw", function()
-    local model_name = "claude-3-5-haiku-20241022"
-    commit_writer(model_name)
-end, { silent = true })
+-- vim.keymap.set("n", "<leader>gw", function()
+--     local model_name = "claude-3-5-haiku-20241022"
+--     commit_writer(model_name)
+-- end, { silent = true })
 
 vim.keymap.set("n", "<leader>so", "<cmd>so %<cr>", { silent = true })
