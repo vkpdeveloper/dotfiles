@@ -66,3 +66,5 @@ alias yaycache="yay -Scc"
 alias python="python3"
 
 alias cat="bat"
+
+alias ystart="yabai --restart-service && skhd -r"
