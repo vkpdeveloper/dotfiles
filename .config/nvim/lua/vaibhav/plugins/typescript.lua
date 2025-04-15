@@ -1,19 +1,24 @@
 return {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {
-        separate_diagnostic_server = true,
-        tsserver_max_memory = "2048M",
-    },
-    -- config = function(opts)
-    --     local tstools = require("typescript-tools")
-    --     tstools.setup(opts)
-    --     local keymap = vim.keymap
-    --
-    --     -- Setting <leader>fi to run TSToolsOrganizeImports
-    --     keymap.set("n", "<leader>fi", "<cmd>TSToolsOrganizeImports<cr>", { desc = "Organize Imports" })
-    --
-    --     -- Setting <leader>ai to run TSToolsAddMissingImports
-    --     keymap.set("n", "<leader>ai", "<cmd>TSToolsAddMissingImports<cr>", { desc = "Add Missing Imports" })
-    -- end
+	"yioneko/nvim-vtsls",
+	dependencies = { "neovim/nvim-lspconfig" },
+	config = function()
+		require("lspconfig").vtsls.setup({
+			-- VTSLS is specifically designed to be lighter than standard tsserver
+			cmd = { "vtsls", "--stdio" },
+			filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+			root_dir = require("lspconfig.util").root_pattern("tsconfig.json", "package.json", ".git"),
+			init_options = {
+				-- Disable non-essential features
+				hostInfo = "neovim",
+				disableAutomaticTypingAcquisition = true,
+				maxTsServerMemory = 4096,
+				tsserver = {
+					path = "", -- Let it find from node_modules
+					logDirectory = "/tmp/vtsls-logs/",
+					logVerbosity = "off",
+					trace = false,
+				},
+			},
+		})
+	end,
 }
