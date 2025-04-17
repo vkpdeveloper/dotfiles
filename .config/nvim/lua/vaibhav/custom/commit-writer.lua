@@ -21,12 +21,13 @@ PROMPT = [[
     -- FORMAT END --
 
     -- RULES --
-    - make sure to follow the format and only respond in the given format and nothing else should be there in the resoonse.
-    - type, scope and subject are mandatory
-    - make sure the subject is less than 50 characters
-    - body is under 350 characters
-    - make sure to not add any other information that is not part of the commit message like author name and email or issue number or anything like that
-    - make sure the commit body is formated like a markdown list-item or a bullet point and covers everything that has changed based on the diff
+    - Make sure to follow the format and only respond in the given format and nothing else should be there in the resoonse.
+    - Type, Scope and Subject are mandatory
+    - Make sure the subject is less than 50 characters
+    - Make sure to not add any other information that is not part of the commit message like author name and email or issue number or anything like that
+    - Make sure the commit body is formated like a markdown list-item or a bullet point and covers everything that has changed based on the diff
+    - Always only response with the formated commit without any markdown syntax
+    - Describe every change in the commit body properly and in bullet points
     -- RULES END --
 
     -- INPUT --
