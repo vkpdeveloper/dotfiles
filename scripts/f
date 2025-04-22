@@ -1,10 +1,10 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
-selected_dir=$(fd --full-path $TMUX_F_DIR --type d --exclude .git | fzf --border rounded --ansi)
+selected_dir=$(fd --full-path $TMUX_F_DIR --type d --max-depth 4 --exclude .git --exclude node_modules --absolute-path | fzf --border rounded --height 75% --ansi --prompt "Select project: ")
+
 if [ -z "$selected_dir" ]; then
     exit 1
 fi
 
-session_name=$(basename $selected_dir)
-
-tmux new-session -c $selected_dir -s $session_name
+session_name=${selected_dir:t}
+tmux new-session -c "$selected_dir" -s "$session_name"
