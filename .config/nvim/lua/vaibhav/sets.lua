@@ -97,3 +97,6 @@ vim.opt.showcmd = true
 vim.opt.title = true
 
 vim.opt.spell = false
+
+-- Sessions Options
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
