@@ -4,36 +4,83 @@
 -- ]]
 
 PROMPT = [[
-    You are a git commit writer, your task is to analyse the given code changes and generate a commit message in the given format based on the given diffs.
-    diff via:
-    -- + -> lines added
-    -- - -> lines removed
-    -- ~ -> lines modified
+You are a git commit writer, your task is to analyze the given code changes and generate a clear, concise, and informative commit message based on the provided diffs.
 
-    -- DIFF EXAMPLE --
-    file_name:
-    + line_number: line_content
+diff via:
+-- + -> lines added
+-- - -> lines removed
+-- ~ -> lines modified
 
-    -- FORMAT --
-    <type>(<scope>): <subject>
+-- FORMAT --
+<type>(<scope>): <subject>
 
-    <body>
-    -- FORMAT END --
+<body>
+-- FORMAT END --
 
-    -- RULES --
-    - Make sure to follow the format and only respond in the given format and nothing else should be there in the resoonse.
-    - Type, Scope and Subject are mandatory
-    - Make sure the subject is less than 50 characters
-    - Make sure to not add any other information that is not part of the commit message like author name and email or issue number or anything like that
-    - Make sure the commit body is formated like a markdown list-item or a bullet point and covers everything that has changed based on the diff
-    - Always only response with the formated commit without any markdown syntax
-    - Describe every change in the commit body properly and in bullet points
-    -- RULES END --
+-- COMMIT TYPES --
+feat: A new feature or enhancement
+fix: A bug fix
+docs: Documentation changes only
+style: Changes that do not affect code functionality (formatting, whitespace, etc.)
+refactor: Code changes that neither fix a bug nor add a feature
+perf: Performance improvements
+test: Adding or modifying tests
+chore: Changes to the build process, tools, or dependencies
+ci: Changes to CI configuration files and scripts
+revert: Reverting a previous commit
+-- COMMIT TYPES END --
 
-    -- INPUT --
+-- RULES --
+1. Follow the exact format above - nothing else should be in your response
+2. Type, scope, and subject are mandatory
+   - Type must be one of the listed commit types
+   - Scope should identify the component or area of the codebase
+   - Subject must be less than 50 characters and use imperative mood (e.g., "add" not "added")
+3. The subject:
+   - Should start with a lowercase letter
+   - Should not end with a period
+   - Must use the imperative mood (e.g., "change" not "changes")
+   - Must be less than 50 characters
+4. The body:
+   - Format as a markdown bullet list (each item starts with "- ")
+   - List all significant changes, including the file and line number where appropriate
+   - Be specific about what changed and why, not just what files were modified
+   - Mention any breaking changes first with "BREAKING CHANGE: " prefix
+   - For purely formatting changes (whitespace, indentation), use "style" type and briefly mention
+   - For mixed changes (both formatting and functionality), prioritize functional changes
+5. Prioritize in this order: breaking changes > feature changes > bug fixes > other changes
+6. Don't include commit metadata (author, issue numbers, etc.)
+7. Be concise but descriptive - explain the "what" and "why" not just the "how"
+8. If changes are trivial or only formatting, still be specific about what formatting was changed
+-- RULES END --
 
-    #diffs#
-    -- INPUT END --
+-- EXAMPLES --
+Example 1 (Feature):
+feat(auth): add password reset functionality
+
+- Add ResetPassword component in auth/reset.tsx
+- Implement password reset API endpoint in auth/api.ts
+- Add email notification service for reset links
+- Update user model to track password reset tokens
+
+Example 2 (Bug Fix):
+fix(cart): resolve items disappearing after page refresh
+
+- Fix localStorage persistence logic in cart/store.ts
+- Add session recovery mechanism on page load
+- Implement proper error handling for failed cart operations
+
+Example 3 (Style Only):
+style(components): improve button formatting consistency
+
+- Standardize button padding and margins across all components
+- Align text positioning within button elements
+- Fix indentation in button component files
+-- EXAMPLES END --
+
+-- INPUT --
+#diffs#
+-- INPUT END --
 ]]
 
 CLAUDE_API_ENDPOINT = "https://api.anthropic.com/v1/messages"
@@ -77,6 +124,7 @@ local function handle_stream_chunk(data, callback)
 end
 
 local function sanitize_diff(diff_str)
+<<<<<<< HEAD
 	if not diff_str then
 		print_error("No diff string provided")
 		return ""
@@ -111,6 +159,27 @@ local function sanitize_diff(diff_str)
 	end
 
 	return sanitized
+=======
+    if not diff_str then
+        print_error("No diff string provided")
+        return ""
+    end
+    -- List of Lua pattern special characters to escape
+    local special_chars = {
+        "%", "^", "$", "(", ")", ".", "[", "]", "*", "+", "-", "?", "#"
+    }
+    local sanitized = diff_str
+    for _, char in ipairs(special_chars) do
+        -- Escape each special character with %
+        -- We need to use % to escape % itself, hence %%
+        if char == "%" then
+            sanitized = sanitized:gsub("%%", "%%%%")
+        else
+            sanitized = sanitized:gsub("%" .. char, "%%" .. char)
+        end
+    end
+    return sanitized
+>>>>>>> 109acd6 (feat(commit-writer): improve commit message generation)
 end
 
 local function check_git_environment()
@@ -128,6 +197,36 @@ local function check_git_environment()
 	end
 
 	return true
+end
+
+local function format_git_output(output)
+    if not output then return "" end
+
+    -- Normalize line endings
+    local normalized = output:gsub("\r\n", "\n")
+
+    -- Add line breaks to improve readability where missing
+    -- Look for import statements without line breaks
+    normalized = normalized:gsub("import([^;]+);import", "import%1;\n\nimport")
+
+    -- Add line breaks between JSX elements where needed
+    normalized = normalized:gsub(">([ ]*)<", ">\n%1<")
+
+    -- Add line breaks for code blocks (function declarations, etc)
+    normalized = normalized:gsub("function ([^{]+){", "function %1{\n")
+
+    return normalized
+end
+
+local function sanitize_for_api(text)
+    if not text then return "" end
+
+    -- Proper JSON escaping
+    local sanitized = text:gsub("\\", "\\\\")
+        :gsub('"', '\\"')
+        :gsub("\n", "\\n")
+
+    return sanitized
 end
 
 local function commit_writer(model_name)
@@ -336,17 +435,49 @@ local function handle_gemini_response(data, callback)
 	end)
 end
 
+local function sanitize_diff_for_api(diff_str)
+    if not diff_str then
+        print_error("No diff string provided")
+        return ""
+    end
+
+    -- For the API payload, encode special characters differently
+    -- Use JSON escaping rather than Lua pattern escaping
+    local sanitized = diff_str:gsub("\\", "\\\\")
+        :gsub('"', '\\"')
+        :gsub("\n", "\\n")
+
+    return sanitized
+end
+
 -- Add this function for Gemini-powered commit writing
 local function gemini_commit_writer()
 	if not check_git_environment() then
 		return
 	end
 
+<<<<<<< HEAD
 	-- Check if GEMINI_API_KEY is set
 	if not GEMINI_API_KEY or GEMINI_API_KEY == "" then
 		print_error("GEMINI_API_KEY environment variable is not set")
 		return
 	end
+=======
+    local function sanitize_git_output(output)
+        if not output then return "" end
+        local normalized = output:gsub("\r\n", "\n")
+        normalized = normalized:gsub("%%", "%%%%")
+
+        return normalized
+    end
+
+
+    -- Check if GEMINI_API_KEY is set
+    if not GEMINI_API_KEY or GEMINI_API_KEY == "" then
+        print_error("GEMINI_API_KEY environment variable is not set")
+        return
+    end
+>>>>>>> 109acd6 (feat(commit-writer): improve commit message generation)
 
 	local current_buffer_name = vim.api.nvim_buf_get_name(0)
 	if current_buffer_name:find("COMMIT_EDITMSG") == nil then
@@ -381,6 +512,7 @@ local function gemini_commit_writer()
 		return
 	end
 
+<<<<<<< HEAD
 	for _, file in ipairs(modified_files) do
 		local success, diff = pcall(vim.fn.system, "git diff --cached " .. vim.fn.shellescape(file))
 		if not success then
@@ -398,12 +530,69 @@ local function gemini_commit_writer()
 			diffs[file] = file_content
 		end
 	end
+=======
+    for _, file in ipairs(modified_files) do
+        -- Make sure to continue in case of any lock file like bun.lock, package-lock.json
+        if file:find(".lock") then
+            goto continue
+        end
+
+        local success, diff = pcall(vim.fn.system, "git diff --cached " .. vim.fn.shellescape(file))
+        if not success then
+            print_error("Failed to get diff for file " .. file .. ": " .. diff)
+            goto continue
+        elseif diff == "" then
+            goto continue
+        end
+
+        -- Get the full content of the HEAD commit version of the file
+        local success_head, head_content = pcall(vim.fn.system, "git show HEAD:" .. vim.fn.shellescape(file))
+        if not success_head then
+            print_error("Failed to get HEAD content for file " .. file .. ": " .. head_content)
+            goto continue
+        end
+
+        head_content = format_git_output(head_content)
+
+        local formatted_content = "--- Before File ---\n\n"
+            .. head_content
+            .. "\n\n--- Before File ---\n\n"
+            .. "--- Current Staged File ---\n\n"
+            .. diff
+            .. "\n\n--- Current Staged File ---"
+
+        diffs[file] = formatted_content
+
+        ::continue::
+    end
+
+    for _, file in ipairs(untracked_files) do
+        -- Make sure to continue in case of any lock file like bun.lock, package-lock.json
+        if file:find(".lock") then
+            goto continue
+        end
+
+        local success, file_content = pcall(vim.fn.system, "cat " .. vim.fn.shellescape(file))
+        if not success then
+            print_error("Failed to read file " .. file .. ": " .. file_content)
+            goto continue
+        elseif file_content == "" then
+            goto continue
+        end
+
+        file_content = sanitize_git_output(file_content)
+        diffs[file] = file_content
+
+        ::continue::
+    end
+>>>>>>> 109acd6 (feat(commit-writer): improve commit message generation)
 
 	if vim.tbl_isempty(diffs) then
 		print_error("No changes detected in the repository")
 		return
 	end
 
+<<<<<<< HEAD
 	local diff_str = ""
 	for file_path, diff in pairs(diffs) do
 		diff_str = diff_str .. "# " .. file_path .. "\n" .. diff .. "\n\n"
@@ -411,6 +600,23 @@ local function gemini_commit_writer()
 
 	diff_str = sanitize_diff(diff_str)
 	local prompt = PROMPT:gsub("#diffs#", diff_str)
+=======
+    local diff_str = ""
+    for file_path, diff in pairs(diffs) do
+        diff_str = diff_str .. "# " .. file_path .. "\n\n" .. diff .. "\n\n"
+    end
+
+    -- Write raw formatted diff for debugging
+    -- vim.fn.writefile(vim.split(diff_str, "\n"), "diffs_formatted.txt")
+
+    -- Prepare diff for the API payload
+    local api_diff_str = sanitize_for_api(diff_str)
+
+    -- Save the sanitized diff_str for debugging
+    -- vim.fn.writefile({ api_diff_str }, "diffs_api.txt")
+
+    local prompt = PROMPT:gsub("#diffs#", api_diff_str)
+>>>>>>> 109acd6 (feat(commit-writer): improve commit message generation)
 
 	local commit_message = ""
 	local current_line = ""
