@@ -26,8 +26,8 @@ bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow)
 bindsym $mod+Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
 
 # Clipboard Screenshot
-bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+# bindsym Ctrl+Shift+S exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+s exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
