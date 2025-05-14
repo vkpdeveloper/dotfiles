@@ -56,6 +56,7 @@ alias nvf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {
 alias nodekillport="lsof -ti :3000"
 
 alias la="eza --icons --long"
+alias ls="eza --icons --long"
 
 alias erp="cd /opt/lampp/htdocs/erp/application"
 
