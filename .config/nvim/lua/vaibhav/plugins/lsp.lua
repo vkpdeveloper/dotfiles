@@ -110,16 +110,17 @@ return {
             -- capabilities = blinkCapabilities,
         })
 
-        -- lspconfig.ts_ls.setup({
-        -- 	on_attach = lsp.on_attach,
-        -- 	capabilities = lsp.get_capabilities(),
-        -- 	commands = {
-        -- 		OrganizeImports = {
-        -- 			organize_imports,
-        -- 			description = "Organize Imports",
-        -- 		},
-        -- 	},
-        -- })
+        lspconfig.denols.setup {
+            on_attach = lsp.on_attach,
+            root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+        }
+
+        lspconfig.vtsls.setup {
+            on_attach = lsp.on_attach,
+            root_dir = lspconfig.util.root_pattern("package.json"),
+            single_file_support = false
+        }
+
 
         lsp.on_attach(function(client, bufnr)
             lsp.default_keymaps({ buffer = bufnr })
@@ -160,6 +161,7 @@ return {
         end)
 
         lsp.setup()
+
         vim.diagnostic.config({
             virtual_text = true,
             signs = {

@@ -5,13 +5,14 @@ return {
         require("lspconfig").vtsls.setup({
             cmd = { "vtsls", "--stdio" },
             filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
-            root_dir = require("lspconfig.util").root_pattern("tsconfig.json", "package.json", ".git"),
+            root_dir = require("lspconfig.util").root_pattern("tsconfig.json", "package.json"),
+            single_file_support = false,
             init_options = {
                 hostInfo = "neovim",
                 disableAutomaticTypingAcquisition = true,
-                maxTsServerMemory = 2048,
+                maxTsServerMemory = 4096,
                 tsserver = {
-                    path = "",
+                    path = "", -- Let it find from node_modules
                     logDirectory = "/tmp/vtsls-logs/",
                     logVerbosity = "off",
                     trace = false,

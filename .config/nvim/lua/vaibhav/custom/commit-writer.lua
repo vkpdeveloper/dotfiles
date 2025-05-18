@@ -86,7 +86,8 @@ style(components): improve button formatting consistency
 CLAUDE_API_ENDPOINT = "https://api.anthropic.com/v1/messages"
 CLAUDE_API_KEY = vim.env.CLAUDE_API_KEY
 
-GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+GEMINI_API_ENDPOINT =
+"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 GEMINI_API_KEY = vim.env.GEMINI_API_KEY
 
 local function print_error(msg)
