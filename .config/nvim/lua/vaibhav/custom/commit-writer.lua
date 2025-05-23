@@ -474,7 +474,7 @@ local function gemini_commit_writer()
             goto continue
         end
 
-        local success, diff = pcall(vim.fn.system, "git diff --cached " .. vim.fn.shellescape(file))
+        local success, diff = pcall(vim.fn.system, "git diff --cached -U50 " .. vim.fn.shellescape(file))
         if not success then
             print_error("Failed to get diff for file " .. file .. ": " .. diff)
             goto continue
@@ -482,23 +482,8 @@ local function gemini_commit_writer()
             goto continue
         end
 
-        -- Get the full content of the HEAD commit version of the file
-        local success_head, head_content = pcall(vim.fn.system, "git show HEAD:" .. vim.fn.shellescape(file))
-        if not success_head then
-            print_error("Failed to get HEAD content for file " .. file .. ": " .. head_content)
-            goto continue
-        end
-
-        head_content = format_git_output(head_content)
-
-        local formatted_content = "--- Before File ---\n\n"
-            .. head_content
-            .. "\n\n--- Before File ---\n\n"
-            .. "--- Current Staged File ---\n\n"
-            .. diff
-            .. "\n\n--- Current Staged File ---"
-
-        diffs[file] = formatted_content
+        local file_content = sanitize_git_output(diff)
+        diffs[file] = file_content
 
         ::continue::
     end
